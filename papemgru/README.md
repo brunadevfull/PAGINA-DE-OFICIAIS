@@ -1,1 +1,0 @@
-# jenkins-example-scripts-php
