@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Run" default="clean-build">
+
+
+    <!-- ============================================  -->
+    <!-- Target: clean                                 -->
+    <!-- ============================================  -->
+	
+    <target name="clean">
+	      <echo msg="clean directory ./build " />
+	      <delete dir="${project.basedir}/build"/>
+    </target>
+    
+
+    <!-- ============================================  -->
+    <!-- Target: prepare                               -->
+    <!-- ============================================  -->
+	
+    <target name="prepare" depends="clean">
+        <echo msg="Making directory ./build" />
+        <mkdir dir="${project.basedir}/build" />
+    </target>
+
+
+    <!-- ============================================  -->
+    <!-- Target: copy-build                            -->
+    <!-- ============================================  -->
+	
+    <target name="copy-build" depends="clean">
+       
+      <echo msg="Copying to ./build directory... ${project.basedir}" />
+        
+        <copy todir="${project.basedir}/build">
+            <fileset dir="${project.basedir}">
+	             <exclude name="**/Jenkinsfile"/>
+                     
+	          </fileset>
+        </copy>
+	    
+    </target>
+
+	
+    <!-- ============================================  -->
+    <!-- Target: compress                              -->
+    <!-- ============================================  -->
+
+    
+    <target name="compress"  depends="copy-build" >
+        <echo msg="Making .zip" />
+	
+           <zip destfile="${project.basedir}/build/drop.zip">
+              <fileset dir="${project.basedir}/build"/>
+           </zip>
+	  </target>  
+  
+    
+    <!-- ============================================  -->
+    <!-- Target: clean-build                           -->
+    <!-- ============================================  -->
+  
+    <target name="clean-build"  depends="compress" >
+       <echo msg="clean build" />         
+       
+         <delete>
+             <fileset dir="${project.basedir}/build">
+	              <include name="**/*"/>
+                <exclude name="drop.zip"/>
+             </fileset>
+         </delete>
+
+	 	 
+	 <echo msg="verificar drop.zip em ${project.basedir}/build " />	
+	
+    </target> 
+
+
+
+
+    
+ 
+
+
+</project>

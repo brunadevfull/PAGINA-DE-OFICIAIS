@@ -1,0 +1,289 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*a { color: #FF6600;}*/
+
+a img {	border:none;}
+*{	margin: 0;	padding: 0;}
+
+.index, .content,.Principal{
+	background-color:#EDEDED;
+	width:100%;
+}
+
+.SearchCriteria{
+	background-color:#EDEDED;
+	border:NONE;
+	width:100%;
+	position:relative;
+	float:left;
+}
+
+.SearchResult{
+	background-color:#EDEDED;
+	border:none;
+	width:62%;
+	margin:0;
+	padding:0;
+	position:relative;
+}
+
+.resultado, .Resultado{
+	background-color:#EDEDED;
+	width:100%;
+	height:666px;
+	
+}
+
+.topo{
+	background-color:#EDEDED;
+	width:100%;
+	height:80px;
+	overflow:hidden;
+	margin:0;
+	padding:0;
+	padding-bottom:15px;
+}
+.top-logo{	position:absolute;	left:85px;	float:right; top:8px;}
+.top-icon{	position:absolute;	left:60px;	top:6px;  float:right;}
+
+.bottom-button{	position:absolute;	left:288px;	bottom:15px;}
+.bottom-button-2{	position:absolute;	left:448px;	bottom:15px;}
+.bottom-button-3{	position:absolute;	left:608px;	bottom:15px;}
+.bottom-button-4{	position:absolute;	left:768px;	bottom:15px;}
+.bottom-button-5{	position:absolute;	left:928px; bottom:15px}
+.bottom-button-6{	position:absolute;	left:1088px; bottom:15px;}
+
+.formBody{	background-color:#EDEDED;}
+.Criteria{ width:100%;}
+
+.Table{
+	font-family: Arial, Helvetica, sans-serif;
+	background-color:#FFFFFF;
+    display: table;
+	border:1px solid #000000;
+}
+
+.Row{
+	display: table-row;
+	vertical-align:baseline;
+	height:30px;
+	line-height:30px;	
+}
+
+.Cell{
+	display: table-cell;
+	border:1px solid black;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top:0px;
+}
+
+.Title{
+	display: table-caption;
+	text-align: center;
+	font-weight: bold;
+	font-size: larger;
+}
+
+.Heading{
+	display: table-row;
+	border-bottom:1px solid black;
+	font-weight: bold;
+	text-align: left;
+}
+
+.image-upload > input{    display: none;}
+
+.mensagem{	color: blue;}
+
+.titulo{
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 20px;
+	text-align: center;
+	padding-bottom:20px;
+	padding-top: 20px;
+}
+
+/* Estrutura das páginas */ 
+
+.divisao{	
+	position: relative;
+   /* background-color: #eff5fb;*/
+    color: #333;
+	
+    /* BORDA */	
+	/*border:1px solid #1743A3; /* BORDA */
+
+  /*   -webkit-box-shadow: 0 0 5px #698FE1;
+       -moz-box-shadow: 0 0 5px #698FE1;
+        -ms-box-shadow: 0 0 5px #698FE1;
+         -o-box-shadow: 0 0 5px #698FE1; 
+            box-shadow: 0 0 5px #698FE1; 
+
+    -webkit-border-radius:20px;
+       -moz-border-radius:20px;
+        -ms-border-radius:20px;
+         -o-border-radius:20px;
+            border-radius:20px;*/
+}
+
+.incluirDocumento{ /* divisao incluirDocumento */
+	width: 700px;
+ 	height: 510px;
+  	border: 1px solid #B1B1B1; /* BORDA */
+	padding: 10px;
+}
+
+.incluirDocumentoRespPapem42{ /* divisao  */
+	width: 700px;
+ 	height: 70px;
+  	border: 1px solid #B1B1B1; /* BORDA */
+	padding: 10px;
+}
+
+.menuLogin{ /* divisao  */
+	width: 400px;
+ 	height: 200px;
+  	border: 1px solid #B1B1B1; /* BORDA */
+	padding: 10px;
+	padding-top: 100px;
+}
+
+.incluirAnexoPapem41{ /* divisao */
+	width: 700px;
+ 	height: 33px;
+  	border: 1px solid #B1B1B1; /* BORDA */
+	padding: 10px;
+}
+
+.pesquisarDocumento{ /* divisao pesquisarDocumento */
+	width: 700px;
+ 	height: 390px;
+   	border: 1px solid #B1B1B1; /* BORDA */
+  	padding: 10px;
+}
+
+.conteudo{
+	position: relative;
+	display: block;
+	/*border:1px solid #1743A3; /* BORDA */
+	vertical-align: left;
+	/*padding: 5px;*/
+}
+
+.contDocumentoLeft{
+	/*top:  5px;
+	left: 80px;*/
+	float: left; 
+	margin: 0 0 0 0;
+}
+
+.contIncluirDocumentoRight{
+	/*top:  5px;
+	left: 80px;*/
+	float: right; 
+	margin: 0 0 0 0;
+}
+
+.divsLabel{
+   	text-align: left;
+	margin: 0;
+	position: absolute;
+	height: 35px;
+}
+
+.esquerda{ left: 12px;	width: 800px; /*border:1px solid green;*/}
+.direita{ left: 608px; width: 80px; /*border:1px solid green;*/}
+.esquerdaNipMat { left: 12px;	width: 300px; /*border:1px solid green;*/}
+
+.meioCPF{ left: 240px; width: 500px;  /*border:1px solid green;*/}
+.meioPasta{ left: 468px; width: 250px; /*border:1px solid green;*/}
+.meioNumRegistro{ left: 470px; width: 250px; /*border:1px solid green;*/}
+.meio{ left: 368px;	width: 450px;}
+.meio2{ left: 370px;	width: 350px; /*border:1px solid green;*/}
+.meio1{ left: 343px;	width: 450px;}
+.meioClass{ left: 362px; width: 380px; /*border:1px solid green;*/}
+
+.topo0{	top:  0;}
+.topo40{ top:  40px; }
+.topo80{ top:  80px; }
+.topo120{ top:  120px; }
+.topo160{ top:  160px; }
+.topo200{ top:  200px; }
+.topo240{ top:  240px; }
+.topo280{ top:  280px; }
+.topo320{ top:  320px; }
+.topo360{ top:  360px; }
+.topo400{ top:  400px; }
+.topo440{ top:  440px; }
+.topo480{ top:  480px; }
+.widht345{ width: 345px;}
+
+.botoesIncluir{top: 540px;/*border:1px solid #1743A3; /* BORDA */}
+.botoesPesquisar{top: 420px;/*border:1px solid #1743A3; /* BORDA */}
+.botoesDetalhar{ width: 900px; /*border:1px solid #1743A3; /* BORDA */}
+.botoesIncluirPapem41{ top: 60px; /*border:1px solid #1743A3; /* BORDA */}
+.botoesIncluirDocumentoRespostaPapem42{ top: 95px; /*border:1px solid #1743A3; /* BORDA */}
+.botoesLogin{ top: 105px; /*border:1px solid #1743A3; /* BORDA */}
+
+
+input, select, file{
+   color:#333;
+   /*min-width: 100px; /* COMPRIMENTO DO CAMPO INPUT */
+   padding: 2px; /* HACK PARA IE */
+  /* margin-top: 35px;   /* HACK PARA IE */
+   margin-bottom: 0; /* HACK PARA IE */        
+   border:1px solid #555555; /* BORDA */
+}
+
+.msg{
+    position:relative;
+	display: block;
+	float: none;
+	margin: 0 .5em 0 0;
+	font-size: 11px;
+	font-weight: bold;
+	text-align:center;
+	vertical-align: top;
+	/*border:1px solid green;*/
+	/*background-color: gray;*/
+}
+
+.erro{ color: red;	margin-top: 0;}
+.sucesso{ width: 450px;	height: 10px; color: green;	margin-top: 2px;}
+
+label{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	/*padding-bottom:20px;
+	padding-top: 20px;*/
+}
+
+label.error {
+display: block; 
+float: none;
+color: red;
+margin: 0 .1em 0 0;
+vertical-align: top; 
+font-size: 12px; 
+margin-top: 0;
+}
+
+.submit { margin-top: 1em;}
+em {font-weight: bold; padding-right: 1em;vertical-align: top;}
+
+
+
+.divCampoPesquisa {
+    position: absolute;
+    border:1px solid #1743A3; /* BORDA */
+    width: 300px;
+    height: 300px;
+    left: 70%;
+    top: 90%;
+}
+

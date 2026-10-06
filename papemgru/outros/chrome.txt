@@ -1,0 +1,22 @@
+<html>
+<body>
+<div id="resultado"></div>
+</body>
+<script>
+$(document).ready(function(){
+                
+                $("#municiamento2").keyup(function(){
+                   
+                   var nome = $("#resultado").val();
+                   
+                   $.post("search.php",
+                         {nome:valordigitado},
+                         function(resposta){
+                             $("#conteudo").html(resposta);
+                         });
+                   
+                });
+                
+            });
+</script>
+</html>

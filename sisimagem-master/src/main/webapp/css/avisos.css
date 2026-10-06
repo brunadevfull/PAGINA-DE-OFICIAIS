@@ -1,0 +1,175 @@
+@CHARSET "ISO-8859-1";
+
+/* ********* AVISOS DA TELA FICHAFINWEB ********* */
+
+#divMensagensFichaFin {
+    position: relative;
+    /*border:1px solid #1743A3; /* BORDA */
+    width: 460px;
+  /*  //width: 360px; */
+    height: 45px;
+    left: 33%;
+    top:  70px;
+   /* //top: 75px;
+    background-color: #eff5fb;*/
+}
+
+
+#divMensagemCamposIncompletos{
+	/*display: none;*/
+	position: absolute;
+	/*background-color: gray;*/	
+	color: red;
+	margin: 0 .5em 0 0; 
+	vertical-align: top; 
+	font-size: 10px; 
+	margin-top: 0px;
+	
+	width: 240px;
+	height: 15px;
+	left: 23%;
+	/*//left: 14%;  HACK PARA IE */
+	top:  68%;
+	/*//top:  49%;  HACK PARA IE */
+}
+
+#divMensagemAnoMaior{
+	/*display: none;*/
+	position: absolute;
+	/*background-color: gray;*/	
+	color: red;
+	margin: 0 .5em 0 0; 
+	vertical-align: top; 
+	font-size: 10px; 
+	margin-top: 0px;
+	
+	width: 240px;
+	height: 15px;
+	left: 23%;
+	 /*//left: 14%; HACK PARA IE */
+	top:  68%;
+	/*//top:  49%;  HACK PARA IE */
+}
+
+#divMensagemMes{
+	/*display: none;*/
+	position: absolute;
+	/*background-color: gray;*/	
+	color: red;
+	margin: 0 .5em 0 0; 
+	vertical-align: top; 
+	font-size: 10px; 
+	margin-top: 0px;
+	width: 350px;
+	height: 15px;
+	left: 12%;
+	/*//left: 7%;  HACK PARA IE */
+	top:  68%;
+	/*//top:  49%;  HACK PARA IE */
+}
+
+#divPeriodoFinaleInicial{
+	/*display: none;*/
+	position: absolute;
+	/*background-color: gray;*/	
+	color: red;
+	margin: 0 .5em 0 0; 
+	vertical-align: top; 
+	font-size: 10px; 
+	margin-top: 0px;
+	
+	width: 350px;
+	height: 15px;
+	left: 10%;
+	/*//left: 7%;  HACK PARA IE */
+	top:  68%;
+	/*//top:  49%;  HACK PARA IE */
+}
+
+#divPeriodo1994Inicial{
+	/*display: none;*/
+	position: absolute;	
+	width: 230px;
+	height: 15px;
+	left: 32%;
+	/*//left: 25%;  HACK PARA IE */
+	top: 65%;
+	/*//top:  48%;  HACK PARA IE */
+	/*background-color: gray;*/
+	color: red;
+	margin: 0 .5em 0 0; 
+	vertical-align: top; 
+	font-size: 10px;
+	margin-top: 0px;
+}
+
+#divPeriodo1994Final{
+	/*display: none;*/
+	position: absolute;	
+	width: 230px;
+	height: 15px;
+	left: 32%;
+	/*//left: 25%;  HACK PARA IE */
+	top:  84%;
+	/*//top:  58%;  HACK PARA IE */
+	/*background-color: gray;*/	
+	color: red;
+	margin: 0 .5em 0 0; 
+	vertical-align: top; 
+	font-size: 10px; 
+	margin-top: 0px;
+}
+
+#divPeriodoInvalido{
+	/*display: none;*/
+	position: absolute;	
+	width: 100px;
+	height: 15px;
+	left: 30%;
+	/*//left: 23%;  HACK PARA IE */
+	top:  81%;
+	/*//top:  48%;  HACK PARA IE */
+	/*background-color: gray;*/	
+	color: red;
+	margin: 0 .5em 0 0; 
+	vertical-align: top; 
+	font-size: 10px; 
+	margin-top: 0px;
+}
+
+
+#divPeriodoInvalidoInicial{
+	/*display: none;*/
+	position: absolute;	
+	width: 100px;
+	height: 15px;
+	left: 32%;
+	/*//left: 26%;  HACK PARA IE */
+	top:  66%;
+	/*//top:  48%;  HACK PARA IE */
+	/*background-color: gray;*/	
+	color: red;
+	margin: 0 .5em 0 0; 
+	vertical-align: top; 
+	font-size: 10px; 
+	margin-top: 0px;
+}
+
+#divPeriodoInvalidoFinal{
+	/*display: none;*/
+	position: absolute;	
+	width: 100px;
+	height: 15px;
+	left: 32%;
+	/*//left: 26%;  HACK PARA IE */
+	top:  84%;
+	/*//top:  58%;  HACK PARA IE */
+	/*background-color: gray;*/	
+	color: red;
+	margin: 0 .5em 0 0; 
+	vertical-align: top; 
+	font-size: 10px; 
+	margin-top: 0px;
+}
+
+/* ********* AVISOS DA TELA FICHAFINWEB ********* */

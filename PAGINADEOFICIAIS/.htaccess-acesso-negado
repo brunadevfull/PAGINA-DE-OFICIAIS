@@ -1,0 +1,4 @@
+<Files "acesso-negado.html">
+    # Desativar regras de IP para a página de erro
+    Require all granted
+</Files>

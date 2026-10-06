@@ -1,0 +1,42 @@
+@CHARSET "ISO-8859-1";
+
+table{  
+font-family: Arial, Helvetica, sans-serif;
+width:80%;
+border-collapse:collapse;
+}
+
+.tabelaDetalhe{ 
+font-family: Arial, Helvetica, sans-serif;
+width:80%;
+border-collapse: separate;
+/*border: solid 1px #555;*/
+/*border-spacing: 1px;
+padding: 10px;*/
+}
+
+th{ font-size: 15px; text-align:left;}
+td, tr{ font-size: 14px; text-align:left;}
+
+.tabelaDetalhe th{ width: 20%; font-size: 13px;}
+.tabelaDetalhe td{ background:#CCCCCC; font-size: 13px; width: 30%;}
+
+th, td{/*text-align:left;*/padding:.5em;border:1px solid #fff;}
+th{background:#6e6e6e url(tr_back.gif) repeat-x;color:#fff;}
+td{background:#CCCCCC;}
+
+/* tablecloth styles */
+
+tr.even td{background:#CCCCCC;}
+tr.odd td{background:#FFFFFF;}
+
+th.over, tr.even th.over, tr.odd th.over{background:#999999;}
+th.down, tr.even th.down, tr.odd th.down{background:#999999;} 
+th.selected, tr.even th.selected, tr.odd th.selected{}
+
+td.over, tr.even td.over, tr.odd td.over{background:#999999;}
+td.down, tr.even td.down, tr.odd td.down{background:#999999;color:#fff;}
+td.selected, tr.even td.selected, tr.odd td.selected{background:#999999;color:#555;}
+
+/* use this if you want to apply different styleing to empty table cells*/
+/*td.empty, tr.odd td.empty, tr.even td.empty{background:#fff;}*/

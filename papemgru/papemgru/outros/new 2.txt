@@ -1,0 +1,63 @@
+$connet = new PDO("mysql: host=localhost; dbname=test", "root", "root");
+	
+	if(isset($_POST["nome"])){
+		$busca = $_POST["nome"];
+		$query = "select * from testando where nome like '%".$busca."%' order by nome";
+	}else{
+		$query = "select * from testando order by nome";
+	}
+
+$statement = $connect->prepare($query);
+$statement->execute();
+$result = $statement->fetchAll();
+$rowCount = $statement->rowCount();
+
+if($rowCount > 0){
+	$data = '<div class="table-responsive">
+	<table class="table bordered">
+	<tr>
+	<th>Nome</th>
+	<th>Valor</th>
+	';
+	
+	foreach($result as $row){
+		$data .='
+		<tr>
+		<td>'.$row["nome"].'</td>
+		<td>'.$row["valor"].'</td>
+		</tr>
+		';
+	}
+	$data .= '</table></div>';
+}else{
+	$data = "Nenhum registro encontrado";
+}
+
+
+mysql i
+
+
+	
+	
+	
+	
+	
+	
+	
+	$con = new PDO("mysql: host=localhost; dbname=test", "root", "root");
+	
+	if(isset($_POST["nome"])){
+		$busca = $_POST["nome"];
+		$query = "select * from testando where nome like '%".$busca."%' order by nome";
+	}else{
+		$query = "select * from testando order by nome";
+	}
+
+$statement = $con->prepare($query);
+$statement->execute();
+$result = $statement->fetchAll();
+$rowCount = $statement->rowCount();
+
+if($rowCount > 0){
+
+}

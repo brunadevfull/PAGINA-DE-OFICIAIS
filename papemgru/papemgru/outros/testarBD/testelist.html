@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Autocomplete - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    var availableTags = [
+      "AGÊNCIA NAVAL DE SEGURANÇA NUCLEAR E QUALIDADE",
+      "CORVETA ANGOSTURA",
+      "CORVETA BAHIANA",
+      "CORVETA CABOCLO",
+      "Diretoria-Geral de Desenvolvimento Nuclear e Tecnológico da Marinha",
+      "NAVIO PATRULHA OCEANICO AMAZONAS",
+      "CORVETA IMPERIAL MARINHEIRO",
+      "CORVETA PURUS",
+      "CORVETA SOLIMOES",
+      "1º ESQUADRÃO DE HELICÓPTEROS DE EMPREGO GERAL DO SUL",
+      "NAVIO DE DESEMBARQUE DE CARROS DE COMBATE MATTOSO MAIA",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme",
+	  "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme",
+	  "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme",
+    ];
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+  } );
+  </script>
+</head>
+<body>
+<form action="resplist.php" method="POST"> 
+<div class="ui-widget">
+  <label for="tags">Tags: </label>
+  <input id="tags" name="omrecolhedora">
+</div>
+<button type="Submite"> enviar</button>
+</form>
+ 
+ 
+</body>
+</html>

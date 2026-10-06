@@ -1,0 +1,95 @@
+.tam1 * { font-size: 12px !important}
+.tam2 * { font-size: 14px !important}
+.tam3 * { font-size: 16px !important}
+.tam4 * { font-size: 18px !important} /* tamanho padrão */
+.tam5 * { font-size: 20px !important}
+.tam6 * { font-size: 22px !important}
+.tam7 * { font-size: 24px !important}
+
+blockquote {
+	width: 660px;
+	float: left;	
+}
+
+blockquote p {
+	font-size: 18px;
+	line-height: 24px;
+	color: #4b4b4b;
+	text-shadow: 1px 1px 0 #FFF;
+}
+
+blockquote p:first-child {
+	/*background-image: url(../imagens/aspas.png);
+	background-repeat: no-repeat;
+	text-indent: 62px;*/
+	margin: 0 0 28px 0;
+	padding: 25px 0 0;
+}
+
+blockquote p:first-child:first-letter {
+	font-weight: bold;
+	font-size: 40px;
+	color: #c1cad1;
+	text-shadow: 1px 1px 0 #67737d;
+}
+
+#atalhosHome {
+	float: right;
+}
+
+#boxHistorico a,
+#boxProEstrategia a,
+#boxConclave a,
+#boxLSC a,
+#boxAmaAzul a {
+	display: block;
+	width: 254px;
+	height: 77px;
+	background-image: url(../imagens/botoes-home.png) !important;
+	text-indent: -9999px;
+}
+
+#boxHistorico a {
+	background-position: 0 0;
+}
+
+#boxProEstrategia a {
+	background-position: 0 -251px !important;
+}
+
+#boxConclave a {
+	background-position: 0 -86px;
+}
+
+#boxLSC a {
+	background-position: 0 -173px;
+}
+
+#boxAmaAzul a {
+	background-position: 0 -328px !important;
+}
+
+#boxHistorico a:hover {
+	background-position: -281px 0;
+}
+
+#boxProEstrategia a:hover {
+	background-position: -281px -251px !important;
+}
+
+#boxConclave a:hover {
+	background-position: -281px -86px;
+}
+
+#boxLSC a:hover {
+	background-position: -281px -173px;
+}
+
+#boxAmaAzul a:hover {
+	background-position: -281px -328px !important;
+}
+
+#middle {
+	clear: both;
+	overflow: hidden;
+}

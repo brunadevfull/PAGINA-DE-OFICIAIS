@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<meta http-equiv="Cache-Control"
+		content="private, no-cache, no-store, must-revalidate, private, max-age=0" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="X-UA-Compatible"
+		content="IE=EmulateIE8,IE=edge,chrome=1" />
+
+	<meta name="viewport" content="width=500" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<title><ui:insert name="title">BP On-line</ui:insert></title>
+
+</h:head>
+<h:body>
+	<p:ajaxStatus onstart="start()" onsuccess="stop()" />
+
+	<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+		closable="false" resizable="false" showHeader="false">
+		<div align="center">
+			<h:outputText value="Aguarde" />
+		</div>
+		<br />
+		<p:graphicImage value="/resources/images/ajaxloadingbar.gif" />
+	</p:dialog>
+	
+
+	<h:form id="Formulario">
+
+		<p:panel id="nipContainer" styleClass="nipContainer">
+			<div align="center" >
+				<p:outputLabel value="BP On-line"
+					styleClass="titleBP" />
+			</div>
+			<p:messages id="messages" autoUpdate="true" showDetail="false"
+				showSummary="true" closable="true" />
+			<br style="margin-bottom: 20px;"/>
+				
+			<p:effect type="fade" event="load" speed="200">
+				<f:param name="mode" value="'show'" />
+			</p:effect>
+
+			<h:panelGrid columns="2" cellpadding="10"
+				columnClasses="column1,column2">
+
+				<p:column id="LabelMatColumn" rendered="#{nipBean.nip == null}">
+					<!-- Essa coluna só aparece quando não possui NIP colocado no sistema ainda. É a tela inicial -->
+				<p:focus for="nip"/>
+					<p:outputLabel styleClass="loginLabel" rendered="#{nipBean.nip == null}"
+						value="Acesse o sistema" />
+					<br />
+					<c:set target="#{bilheteBean}" value="#{nipBean.nip}"
+						property="nip" />
+					<h:inputHidden value="#{bilheteBean.nip}" />
+					<p:inputMask mask="99999999?9" slotChar="" id="nip" required="true" styleClass="inputNip"
+						autocomplete="off" placeholder="Digite a Matr. Financeira"
+						value="#{nipBean.nip}"
+						requiredMessage="Favor informar seu NIP/Matrícula Financeira" />
+					<br />
+					
+					<p:commandButton value="Entrar" update="@form" timeout="20000" onerror="ajaxError();" id="doNip"
+						action="#{nipBean.nipAction}" styleClass="ui-priority-primary" 
+						style="padding:5px 5px 5px 5px; margin-top:1.250em; width: 112px" />
+					
+					<br />	<br />	
+					
+							
+					<p:button value="Cadastrar-se"  onerror="ajaxError();" id="cadNip"
+						href="newUser.jsf" styleClass="link"
+						style="padding:5px 5px 5px 5px; margin-top:1.250em; width: 120px;" 
+						/>
+				
+				    </p:column>
+						
+
+				<p:column id="LabelLoginColumn" rendered="#{nipBean.nip != null}">
+				<!-- Essa coluna só aparece quando ja foi colocado o NIP no sistema É a tela de login ou emitir bilhete recente -->
+					<p:focus for="senha"/>
+					
+					<p:outputLabel id="nipLabel"
+						value="Matr. Financeira: #{nipBean.nip}"
+						styleClass="matrLabel" />
+					<br />
+					<p:password id="senha" required="true" value="#{nipBean.password}"
+						maxlength="20" placeholder="Digite sua Senha"
+						styleClass="inputNip"
+						requiredMessage="Favor informar Senha" />
+					<br />
+					<p:commandButton value="Entrar no Sistema" id="doLogin" timeout="20000" onerror="ajaxError();"
+						action="#{nipBean.loginAction}" styleClass="ui-priority-primary"
+						style="padding:5px 5px 5px 5px; margin:0 auto; position:relative; margin-top:20px; border-radius: 0px; " />
+					<br/><br/><br/>
+					
+					<p:commandButton value="Emitir BP de #{bilheteBean.mesAno()}" id="gerarBP"
+						styleClass="ui-priority-primary"
+						title="Emita seu Bilhete de Pagamento mais recente"
+						style="padding:5px 10px 5px 10px; border-radius: 0px;"
+						action="#{nipBean.lastBpAction}">
+						<p:ajax update=":Formulario:singleDT"
+							listener="#{bilheteBean.lastBpAction()}" />
+					</p:commandButton>
+				</p:column>
+
+				<p:column id="bpRecente">
+					<!--Mostra o título de BP Mais recente --><p:graphicImage value="/resources/images/pege.png" height="120em;" styleClass="imgBp"/><br></br>
+					<h:outputText value="Bilhete de Pagamento mais recente:" styleClass="bpRecente" />
+					<div>
+						<p:outputLabel rendered="#{nipBean.getCarga()}"
+							value="#{bilheteBean.mesAno()}"
+							styleClass="mesAno" style="color:#106dad;"/>
+					</div>
+				</p:column>
+			</h:panelGrid>
+
+
+	
+
+			<p:overlayPanel id="bpOver" widgetVar="bpOverlay" showEffect="fade"
+				hideEffect="fade" dynamic="true" modal="true" dismissable="true"
+				styleClass="Centered" showCloseIcon="true">
+				<p:dataTable id="singleDT" var="c" value="#{bilheteBean.sit}"
+					emptyMessage="Dados não encontrados">
+					<f:facet name="header">
+			            BP de #{bilheteBean.mesAno()}
+			        </f:facet>
+					<p:column headerText="Vínculo" width="50">
+						<h:outputText value="#{c.vinc}" />
+					</p:column>
+					<p:column headerText="Nome" priority="2">
+						<h:outputText value="#{c.nome}" />
+					</p:column>
+					<p:column headerText="PDF" width="70" style="margin:0 auto;">
+						<p:commandButton action="#{bilheteBean.carregaDados}" ajax=""
+							value="Emitir" immediate="true">
+							<f:setPropertyActionListener value="#{c}"
+								target="#{bilheteBean.selectedSit}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</p:overlayPanel>
+
+			<h:panelGrid id="options" columns="2" width="100%"
+				columnClasses="op1,op2" styleClass="options">
+				<h:column>
+					<p:button rendered="#{nipBean.nip != null}" value="Recadastrar Senha"
+						href="restricted/register.jsf" id="link2"
+						style="font-weight:bold;" styleClass="link" />
+				</h:column>
+				<h:column>
+					<p:commandButton rendered="#{nipBean.nip != null}" immediate="true"
+						value="Sair" update="@form" id="sair" 
+						action="#{nipBean.killAction}" icon="fa fa-power-off"
+						style=" margin-top:20px; margin-right: 10px; border-radius: 0px; " />
+				</h:column>
+			</h:panelGrid>
+
+		</p:panel>
+
+		<p:panel id="optContainer" styleClass="optContainer">
+			<h:panelGrid id="options2" columns="2" width="100%"
+				columnClasses="op3,op4" styleClass="options">
+				<h:column>
+					<p:button immediate="true" href="autentica.jsf"
+						value="Autentica BP" id="autenticabp"
+						styleClass="ui-priority-primary" icon="fa fa-barcode"
+						style="margin:0;" />
+				</h:column>
+				<p:link value="Manual do BP On-line"
+					href="../resources/docs/manualBP.pdf" target="_blank" id="manual"
+					style="color:red;" styleClass="manual" />
+
+			</h:panelGrid>
+
+		</p:panel>
+		<p:tooltip id="ttgerarbp" for="gerarBP" trackMouse="true" />
+		<p:tooltip id="ttsair" for="sair" trackMouse="true" />
+		<p:tooltip id="ttautenticabp" for="autenticabp" trackMouse="true">
+			<h:outputText
+				value="Este aplicativo tem o propósito de possibilitar que as instituições " />
+			<br />
+			<h:outputText
+				value="extra-MB, mormente as financeiras e comerciais, possam se certificar " />
+			<br />
+			<h:outputText
+				value="de que BP foi emitido pelo aplicativo BP ON-LINE, da PAPEM, e que as " />
+			<br />
+			<h:outputText value="informações constantes do mesmo são autênticas." />
+		</p:tooltip>
+	</h:form>
+
+	<script type="text/javascript">
+function start() {
+    PF('statusDialog').show();
+}
+ 
+function stop() {
+	window.setTimeout(function(){
+	    PF('statusDialog').hide();
+    }, 100);
+}
+
+function ajaxError() {
+	window.setTimeout(function(){
+	    PF('statusDialog').hide();
+    }, 100);
+	window.location.replace("timeout.jsf");
+}
+
+window.onbeforeunload = noBack;
+function noBack(){
+	window.history.forward()
+}
+window.onload=noBack;
+window.onunload=function(){void(0)}
+ 
+ </script>
+
+</h:body>
+</html>

@@ -1,0 +1,5 @@
+# Definir página de erro para acesso negado
+#ErrorDocument 403 /acesso-negado.html
+
+# Permitir acesso apenas para a faixa de IPs da PAPEM0
+#Require ip 10.1.128.0/20

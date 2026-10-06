@@ -1,0 +1,5 @@
+senha - SPAGNET
+login - SPAGNET
+porta - 1521
+host - 10.9.17.223
+sid - SPAGNETH

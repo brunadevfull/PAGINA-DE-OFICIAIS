@@ -1,0 +1,1846 @@
+:root {
+  /* Cores originais preservadas */
+  --background-color-1: #031633;
+  --background-color-2: #084298;
+  --background-color-3: #042454;
+  
+  /* Novas variáveis para design atualizado */
+  --primary-color: #0a4da3;
+  --primary-light: #2974d8;
+  --primary-dark: #032c66;
+  --secondary-color: #e9f0f9;
+  --accent-color: #ff9800;
+  --text-light: #ffffff;
+  --text-dark: #212529;
+  --success-color: #4caf50;
+  --danger-color: #f44336;
+  --border-radius: 10px;
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --transition: all 0.25s ease;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 20px;
+  --font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-size-sm: 16px;
+  --font-size-md: 18px;
+  --font-size-lg: 24px;
+  --font-size-xl: 32px;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  margin: 0;
+  padding: 0;
+  line-height: 1.4;
+  background-color: #f5f8fb;
+  color: var(--text-dark);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('../imagens/mb2.png') no-repeat center center fixed;
+  background-size: cover;
+  opacity: 0.08;
+  z-index: -1;
+}
+
+/* Preservando o estilo original do topo */
+#topo {
+  width: 100%;
+  background-image: linear-gradient(to bottom, var(--background-color-1), var(--background-color-2));
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  padding: 3px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+  margin-bottom: 0;
+  position: relative;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  margin-left: 13em;
+  margin-top: 1em;
+}
+
+.navbar-logo {
+  max-height: 100px;
+  margin-right: 5px;
+}
+
+.navbar-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 30px;
+}
+
+.navbar-text h1 {
+  margin: 0;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+.navbar-text h6 {
+  margin: 0;
+  font-size: 1.0em;
+  font-weight: 500;
+  line-height: 12px;
+  color: rgb(235, 235, 235);
+  font-family: "Octin College RG - Bold", Verdana, Geneva, Tahoma, sans-serif;
+  position: relative;
+  top: -6px;
+}
+
+.navbar-text p {
+  margin-top: 0;
+  font-size: 1.0em;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;   
+  margin-right: -350px;
+  justify-content: flex-end;
+  margin-right: -400px;
+}
+
+/* Radio Section - Preservando mas com estilo atualizado */
+.radio-section {
+  text-align: center;
+  margin-top: 15px;
+  width: 350px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.radiomarinha {
+  width: 150px;
+  height: 50px;
+  margin: 10px;
+  transition: var(--transition);
+}
+
+.radiomarinha:hover {
+  transform: scale(1.05);
+}
+
+audio {
+  margin-top: 10px;
+  width: 100%;
+  height: 30px;
+  border-radius: 15px;
+}
+
+/* Main Content - Novo design ocupando toda a largura */
+.quadro-de-oficiais {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  color: var(--text-light);
+  padding: 15px 25px;
+  border-radius: 10px 10px 0 0;
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+  margin: 20px auto 0;
+  width: 98%;
+  max-width: 100%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.container {
+  background-color: white;
+  border-radius: 0 0 10px 10px;
+  box-shadow: var(--card-shadow);
+  padding: 20px;
+  margin: 0 auto;
+  width: 98%;
+  max-width: 100%;
+  opacity: 0.98;
+}
+.datetime-cards {
+  display: flex;
+  align-items: stretch;
+  gap: var(--spacing-sm);
+}
+
+.datetime-card {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.18);
+  color: var(--text-light);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(3px);
+}
+
+.datetime-card--time {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* ======================= */
+/* Novo modal futurista de Oficiais de Serviço */
+/* ======================= */
+.aurora-button {
+  margin-left: 12px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #7f5eff, #00d4ff);
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  box-shadow: 0 10px 25px rgba(127, 94, 255, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.aurora-button:hover,
+.aurora-button:focus {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 14px 30px rgba(0, 212, 255, 0.4);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.aurora-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.35);
+}
+
+.neo-duty-modal {
+  background: radial-gradient(circle at top left, rgba(127, 94, 255, 0.95), rgba(10, 34, 64, 0.95));
+  border: none;
+  border-radius: 22px;
+  overflow: hidden;
+  color: #f0f7ff;
+  box-shadow: 0 20px 50px rgba(15, 30, 60, 0.45);
+}
+
+.neo-modal-hero {
+  padding: 28px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: linear-gradient(135deg, rgba(127, 94, 255, 0.95), rgba(0, 212, 255, 0.6));
+}
+
+.neo-modal-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.neo-modal-subtitle {
+  font-size: 0.95rem;
+  opacity: 0.85;
+  margin-bottom: 0;
+}
+
+.neo-close-button {
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  color: #ffffff;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.neo-close-button:hover,
+.neo-close-button:focus {
+  transform: rotate(90deg);
+  background: rgba(255, 255, 255, 0.24);
+  color: #ffffff;
+  outline: none;
+}
+
+.neo-modal-body {
+  padding: 32px;
+  background: linear-gradient(180deg, rgba(6, 18, 35, 0.95), rgba(4, 11, 24, 0.92));
+}
+
+.neo-status-area {
+  margin-bottom: 24px;
+}
+
+.neo-loading-state {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #e4efff;
+}
+
+.neo-status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.neo-status-card {
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(6px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.neo-status-card strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.05rem;
+  color: #ffffff;
+}
+
+.neo-status-card--compact time {
+  font-size: 0.95rem;
+  color: #c6dcff;
+}
+
+.neo-status-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(226, 237, 255, 0.75);
+}
+
+.neo-alert {
+  padding: 14px 18px;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  margin-top: 18px;
+}
+
+.neo-alert-danger {
+  background: rgba(244, 67, 54, 0.18);
+  color: #ffbdb7;
+  border: 1px solid rgba(244, 67, 54, 0.35);
+}
+
+.neo-duty-form {
+  display: grid;
+  gap: 20px;
+}
+
+.neo-field-group label {
+  display: block;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+  color: rgba(226, 237, 255, 0.82);
+}
+
+.neo-select-wrapper {
+  position: relative;
+}
+
+.neo-select {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  border-radius: 14px;
+  padding: 12px 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.neo-select:focus {
+  border-color: rgba(0, 212, 255, 0.8);
+  box-shadow: 0 0 0 0.2rem rgba(0, 212, 255, 0.25);
+  background: rgba(255, 255, 255, 0.22);
+  color: #0b1424;
+}
+
+.neo-select option {
+  color: #0b1424;
+}
+
+.neo-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.neo-secondary-button,
+.neo-primary-button {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 22px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.neo-secondary-button {
+  background: rgba(255, 255, 255, 0.12);
+  color: #e3edff;
+}
+
+.neo-secondary-button:hover,
+.neo-secondary-button:focus {
+  background: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.neo-primary-button {
+  background: linear-gradient(135deg, #00d4ff, #7f5eff);
+  color: #0a182e;
+  box-shadow: 0 14px 25px rgba(0, 212, 255, 0.35);
+}
+
+.neo-primary-button:hover,
+.neo-primary-button:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 32px rgba(127, 94, 255, 0.45);
+  color: #061020;
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .neo-modal-body {
+    padding: 24px 20px;
+  }
+
+  .neo-modal-hero {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .neo-modal-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .aurora-button {
+    margin-top: 10px;
+    width: 100%;
+  }
+}
+
+.datetime-card__icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.datetime-card__text {
+  font-size: 1.3rem;
+}
+
+.datetime-card--time .datetime-card__text {
+  font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .datetime-cards {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .datetime-card {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .datetime-card__text {
+    font-size: 0.95rem;
+  }
+
+  .datetime-card--time .datetime-card__text {
+    font-size: 1.1rem;
+  }
+}
+
+/* Table Styling - Grande e Visível */
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 25px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+}
+
+.table th {
+  background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
+  color: var(--text-light);
+  padding: 12px 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 17px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+.table td {
+  padding: 10px 14px;
+  font-size: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  vertical-align: middle;
+  text-align: center;
+  white-space: nowrap;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+.table tbody tr:nth-child(odd) td {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.table tbody tr:nth-child(even) td {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.table tbody tr:hover td {
+  background-color: rgba(10, 77, 163, 0.08);
+}
+
+.name-column {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.name-column img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  transition: var(--transition);
+  margin-right: 8px;
+}
+
+.name-column:hover img {
+  transform: scale(1.1);
+}
+
+/* Status Switch - Grande e Visível */
+.status-cell {
+  width: 130px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 65px;
+  height: 35px;
+  margin: 0 auto;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: var(--transition);
+  border-radius: 40px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 29px;
+  width: 29px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: var(--transition);
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+input:checked + .slider {
+  background-color: var(--success-color);
+}
+
+input:not(:checked) + .slider {
+  background-color: var(--danger-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(30px);
+}
+
+.status-label {
+  display: block;
+  margin-top: 5px;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.present .status-label {
+  color: var(--success-color);
+}
+
+.absent .status-label {
+  color: var(--danger-color);
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn-success {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-success:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.btn-add {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-add:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.glass-button {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  transition: transform 0.3s, background 0.3s;
+  margin-right: 10px;
+  margin-top: 55px;
+}
+
+.glass-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* Layout de 3 colunas para tabelas */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -10px;
+  margin-left: -10px;
+}
+
+.col-md-4 {
+  flex: 0 0 33.333333%;
+  max-width: 33.333333%;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+/* Modal Styling - Combinando o melhor dos dois */
+.modal-content {
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  border: none;
+  overflow: hidden;
+}
+
+.modal-header {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  color: var(--text-light);
+  border-bottom: none;
+  padding: 15px 20px;
+  font-size: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.modal-body {
+  padding: 20px;
+  font-size: 18px;
+}
+
+.modal-footer {
+  border-top: none;
+  padding: 15px 20px;
+  text-align: right;
+}
+
+.modal-dialog {
+  max-width: 500px;
+  margin: 30px auto;
+}
+
+/* Estilos específicos para os usuários 
+body.logged-in .btn-add,
+body.logged-in .btn-danger,
+body.logged-in .btn-primary {
+  display: inline-block;
+}
+
+body.logged-in .status-label {
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  vertical-align: middle;
+  font-size: 12px;
+}
+
+body.logged-in .switch {
+  position: relative;
+  width: 40px;
+  height: 25px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+body.logged-in .status-label.green {
+  color: white;
+  display: inline-block;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+body.logged-in .switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 21px;
+  width: 21px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+body.logged-in input:checked + .slider:before {
+  transform: translateX(14px);
+}
+
+body.logged-in .table td,
+body.logged-in .table th {
+  font-size: 14px;
+}
+
+body.logged-in .table th {
+  font-size: 10px;
+}
+
+body.logged-in .status-cell {
+  text-align: center;
+  vertical-align: middle;
+  font-size: 12px;
+  padding: 2px;
+  max-width: 60px;
+  width: 60px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+*/
+/* Estilos específicos para o usuário portaria 
+body.portaria .add-user-button,
+body.portaria .modal-footer .btn-primary,
+body.portaria .modal-footer .btn-success,
+body.portaria .modal-footer .btn-danger,
+body.portaria .dropdown-menu {
+  display: none;
+}
+
+body.portaria .status-label{
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  vertical-align: middle;
+  font-size: 12px;
+}
+
+body.portaria .table td {
+  font-size: 1.6em;
+  padding: 8px;
+  white-space: nowrap;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+body.portaria .table th {
+  background-color: #003f87;
+  color: #ffffff;
+  text-align: center;
+  font-size: 1.1em;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+body.portaria .switch {
+  position: relative;
+  display: inline-block;
+  width: 80px; 
+  height: 34px; 
+}
+
+body.portaria .status-label.green{
+  color: white;
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+
+body.portaria .slider:before {
+  position: absolute;
+  content: "";
+  height: 30px;
+  width: 30px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+body.portaria input:checked + .slider:before {
+  transform: translateX(46px);
+}
+
+body.portaria .status-cell {
+  max-width: 300px;
+  width: 142px;
+}
+*/
+/* Melhorias visuais adicionais */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.6); }
+  70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+}
+
+.present .slider {
+  animation: pulse 2s infinite;
+}
+
+tr.present td:first-child {
+  border-left: 6px solid var(--success-color);
+}
+
+tr.absent td:first-child {
+  border-left: 6px solid var(--danger-color);
+}
+
+.table tbody tr:hover td {
+  transform: scale(1.01);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  z-index: 1;
+  position: relative;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 1200px) {
+  .col-md-4 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .col-md-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  
+  #topo {
+    flex-wrap: wrap;
+  }
+  
+  .navbar-left {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .navbar-right {
+    width: 100%;
+    justify-content: center;
+  }
+}
+/* Correção para o posicionamento do botão de login */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  z-index: 10; /* Garantir que o botão de login fique acima da rádio */
+}
+
+/* Botão de Login redesenhado */
+.login-button {
+  background: linear-gradient(135deg, #336ab7, #1a4989);
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+  cursor: pointer;
+  margin-right: 30px;
+}
+
+.login-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: all 0.5s ease;
+}
+
+.login-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+.login-button:hover::before {
+  left: 100%;
+}
+
+/* Rádio Marinha - Redesenhada com efeito AO VIVO */
+.radio-section {
+  position: relative;
+  background: linear-gradient(135deg, rgba(10, 77, 163, 0.2), rgba(3, 44, 102, 0.3));
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  width: 220px;
+  margin-right: 20px;
+  transform: translateY(-5px);
+  overflow: hidden;
+}
+
+/* Efeito ondulado animado */
+.radio-section::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 25%;
+  background: linear-gradient(90deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 100%);
+  opacity: 0.5;
+  border-radius: 100% 100% 0 0;
+  animation: wave 8s infinite linear;
+  transform: scaleY(0.3);
+  transform-origin: bottom;
+  z-index: 0;
+}
+
+@keyframes wave {
+  0% { background-position: 0 0; }
+  100% { background-position: 400px 0; }
+}
+
+.radiomarinha {
+  width: 160px;
+  height: auto;
+  margin: 5px 0 10px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.radiomarinha:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Status "AO VIVO" */
+.radio-section::after {
+  content: 'AO VIVO';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  background-color: #f44336;
+  padding: 3px 8px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  animation: pulse-live 2s infinite;
+  z-index: 2;
+}
+
+@keyframes pulse-live {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* Player de áudio redesenhado */
+audio {
+  width: 100%;
+  height: 32px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.15);
+  margin-top: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsividade para rádio e login */
+@media (max-width: 1200px) {
+  .radio-section {
+    width: 200px;
+  }
+  
+  .radiomarinha {
+    width: 140px;
+  }
+}
+
+@media (max-width: 992px) {
+  .radio-section {
+    margin: 10px auto;
+    width: 180px;
+  }
+  
+  .navbar-right {
+    margin-right: 0;
+  }
+  
+  .login-button {
+    margin-right: 0;
+    padding: 8px 20px;
+  }
+}
+/* CSS exclusivo para o modo Administrador */
+
+/* Seletor base para todos os estilos de admin - usando a classe que já existe no seu sistema */
+body.logged-in:not(.portaria) {
+  /* Estilos gerais para administradores */
+}
+
+/* Cabeçalho do administrador com destaque */
+body.logged-in:not(.portaria) #topo {
+  border-bottom: 3px solid rgba(255, 215, 0, 0.5); /* Borda dourada sutil para indicar modo admin */
+}
+
+/* Dropdown de ações administrativas melhorado */
+body.logged-in:not(.portaria) .dropdown .glass-button {
+  background: linear-gradient(135deg, rgba(10, 77, 163, 0.6), rgba(3, 44, 102, 0.7));
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s;
+ 
+  padding: 8px 15px;
+  border-radius: 6px;
+}
+
+body.logged-in:not(.portaria) .dropdown .glass-button:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, rgba(10, 77, 163, 0.7), rgba(3, 44, 102, 0.8));
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Menu dropdown com visual aprimorado */
+body.logged-in:not(.portaria) .dropdown-menu {
+  background: linear-gradient(135deg, #032c66, #0a4da3);
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  padding: 5px 0;
+  min-width: 220px;
+  margin-top: 10px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+body.logged-in:not(.portaria) .dropdown-menu .dropdown-item {
+  color: white;
+  padding: 10px 16px;
+  font-size: 14px;
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+}
+
+body.logged-in:not(.portaria) .dropdown-menu .dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-left: 3px solid #ff9800;
+}
+
+body.logged-in:not(.portaria) .dropdown-menu hr {
+  border-color: rgba(255, 255, 255, 0.1);
+  margin: 5px 0;
+}
+
+/* Botões de ação nas tabelas (Adicionar, Excluir, Editar) */
+body.logged-in:not(.portaria) .btn-add,
+body.logged-in:not(.portaria) .btn-danger,
+body.logged-in:not(.portaria) .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+  padding: 0;
+  margin: 0 2px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+body.logged-in:not(.portaria) .btn-add {
+  background: linear-gradient(135deg, #28a745, #218838);
+  color: white;
+  border: none;
+}
+
+body.logged-in:not(.portaria) .btn-danger {
+  background: linear-gradient(135deg, #dc3545, #c82333);
+  color: white;
+  border: none;
+}
+
+body.logged-in:not(.portaria) .btn-primary {
+  background: linear-gradient(135deg, #0a4da3, #032c66);
+  color: white;
+  border: none;
+  width: auto;
+  padding: 0 10px;
+}
+
+body.logged-in:not(.portaria) .btn-add:hover,
+body.logged-in:not(.portaria) .btn-danger:hover,
+body.logged-in:not(.portaria) .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Cabeçalho de tabela para administrador */
+body.logged-in:not(.portaria) .table th {
+  background: linear-gradient(to right, #0a4da3, #032c66);
+  color: white;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 10px 8px;
+}
+
+/* Coluna de posições com estilo especial para admin */
+body.logged-in:not(.portaria) .location-cell {
+  background-color: rgba(10, 77, 163, 0.1) !important;
+  font-weight: 600;
+  color: #032c66;
+  border-right: 2px solid rgba(10, 77, 163, 0.2);
+  width: 60px;
+  text-align: center;
+}
+
+/* Efeito de hover nas linhas para melhor feedback visual */
+body.logged-in:not(.portaria) .table tbody tr:hover td {
+  background-color: rgba(10, 77, 163, 0.05);
+}
+
+/* Indicador visual para o administrador de linha selecionada */
+body.logged-in:not(.portaria) .table tbody tr:active td {
+  background-color: rgba(10, 77, 163, 0.1);
+}
+
+/* Tooltip para ações do administrador */
+body.logged-in:not(.portaria) [data-toggle="tooltip"] {
+  position: relative;
+}
+
+body.logged-in:not(.portaria) [data-toggle="tooltip"]:hover::after {
+  content: attr(data-title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 10px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 1000;
+}
+
+/* Logout button para administrador */
+body.logged-in:not(.portaria) .logout-button {
+  background: linear-gradient(135deg, #dc3545, #c82333);
+  border: none;
+  padding: 8px 15px;
+  color: white;
+  font-weight: 600;
+  border-radius: 6px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+body.logged-in:not(.portaria) .logout-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Switch de presença personalizado para administrador */
+body.logged-in:not(.portaria) .switch {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 24px;
+  margin: 0 auto;
+}
+
+body.logged-in:not(.portaria) .slider {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.logged-in:not(.portaria) .slider:before {
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 2px;
+}
+
+body.logged-in:not(.portaria) input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* Efeito de pulsação no switch para destacar mudanças */
+body.logged-in:not(.portaria) input:checked + .slider {
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+body.logged-in:not(.portaria) input:not(:checked) + .slider {
+  box-shadow: 0 0 5px rgba(244, 67, 54, 0.5);
+}
+
+/* Modais personalizados para administrador */
+body.logged-in:not(.portaria) .modal-content {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+body.logged-in:not(.portaria) .modal-header {
+  background: linear-gradient(135deg, #0a4da3, #032c66);
+  color: white;
+  border-bottom: none;
+  padding: 15px 20px;
+}
+
+body.logged-in:not(.portaria) .modal-title {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+body.logged-in:not(.portaria) .modal-body {
+  padding: 20px;
+}
+
+body.logged-in:not(.portaria) .form-control {
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 8px 12px;
+  transition: all 0.2s;
+}
+
+body.logged-in:not(.portaria) .form-control:focus {
+  border-color: #0a4da3;
+  box-shadow: 0 0 0 3px rgba(10, 77, 163, 0.2);
+}
+
+body.logged-in:not(.portaria) .modal-footer {
+  border-top: none;
+  padding: 15px 20px;
+}
+
+/* Barra de rolagem personalizada para admin */
+body.logged-in:not(.portaria) ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body.logged-in:not(.portaria) ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+body.logged-in:not(.portaria) ::-webkit-scrollbar-thumb {
+  background: #0a4da3;
+  border-radius: 4px;
+}
+
+body.logged-in:not(.portaria) ::-webkit-scrollbar-thumb:hover {
+  background: #032c66;
+}
+/* CSS para tabelas responsivas para administradores - VERSÃO CORRIGIDA */
+
+/* Layout responsivo para as tabelas que mantém o lado a lado - APENAS ADMIN */
+body.logged-in:not(.portaria) .row {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 5px; /* Reduzido o espaçamento entre colunas */
+  width: 100%;
+}
+
+body.logged-in:not(.portaria) .col-md-4 {
+  flex: 0 0 33.333333%;
+  min-width: 250px; /* Reduzido para caber melhor */
+  padding: 0 3px; /* Reduzido o padding horizontal */
+  box-sizing: border-box;
+}
+
+/* Ajustes para as tabelas - APENAS ADMIN */
+body.logged-in:not(.portaria) .table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 10px; /* Reduzido */
+  font-size: 11px; /* Tamanho fixo menor */
+}
+
+body.logged-in:not(.portaria) .table th {
+  background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
+  color: white;
+  padding: 6px 3px; /* Reduzido */
+  font-size: 11px; /* Tamanho fixo menor */
+  text-align: center;
+  white-space: nowrap;
+}
+
+body.logged-in:not(.portaria) .table td {
+  padding: 5px 3px; /* Reduzido */
+  font-size: 11px; /* Tamanho fixo menor */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+/* Coluna de posições - ajuste tamanho */
+body.logged-in:not(.portaria) .table th:first-child,
+body.logged-in:not(.portaria) .table td:first-child {
+  width: 30px;
+  min-width: 30px;
+  max-width: 30px;
+  padding: 0 2px;
+}
+
+/* Nome coluna com tamanho adaptativo - APENAS ADMIN */
+body.logged-in:not(.portaria) .name-column {
+  display: flex;
+  align-items: center;
+  gap: 3px; /* Reduzido */
+  font-size: 11px;
+}
+
+body.logged-in:not(.portaria) .name-column img {
+  width: 25px; /* Tamanho fixo menor */
+  height: 25px;
+  min-width: 25px;
+  object-fit: contain;
+}
+
+/* Status e ações com tamanho adaptativo - APENAS ADMIN */
+body.logged-in:not(.portaria) .status-cell {
+  width: 50px;
+  min-width: 50px;
+  max-width: 50px;
+}
+
+/* Tamanho para célula de ações */
+body.logged-in:not(.portaria) .table th:last-child,
+body.logged-in:not(.portaria) .table td:last-child {
+  width: 100px;
+  min-width: 100px;
+  white-space: nowrap;
+}
+
+/* Container ajustado */
+body.logged-in:not(.portaria) .container {
+  
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 0 0 10px 10px;
+  padding: 10px 5px; /* Reduzido */
+  box-sizing: border-box;
+}
+
+/* Botões compactos para economizar espaço - APENAS ADMIN */
+body.logged-in:not(.portaria) .btn {
+  padding: 3px 6px; /* Reduzido */
+  margin: 0 1px; /* Espaço mínimo entre botões */
+  font-size: 10px; /* Tamanho fixo menor */
+  border-radius: 3px;
+  min-width: 20px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Corrigir botão Excluir que está quebrando */
+body.logged-in:not(.portaria) .btn-danger {
+  min-width: 40px; /* Garantir largura mínima para o texto */
+}
+
+/* Corrigir botão Editar */
+body.logged-in:not(.portaria) .btn-primary {
+  min-width: 35px;
+}
+
+/* Ajuste da largura do switch para ocupar menos espaço - APENAS ADMIN */
+body.logged-in:not(.portaria) .switch {
+  position: relative;
+  display: inline-block;
+  width: 36px; /* Tamanho fixo corrigido */
+  height: 20px; /* Tamanho fixo corrigido */
+  margin: 0 auto;
+}
+
+body.logged-in:not(.portaria) .slider:before {
+  position: absolute;
+  content: "";
+  height: 16px; /* Tamanho fixo corrigido */
+  width: 16px; /* Tamanho fixo corrigido */
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+}
+
+/* Corrigir o posicionamento do toggle quando ativado */
+body.logged-in:not(.portaria) input:checked + .slider:before {
+  transform: translateX(16px) !important; /* Ajustado para o valor correto */
+}
+
+/* Adaptar o conteúdo à tela - Seção do topo mais compacta */
+body.logged-in:not(.portaria) #topo {
+  padding: 5px;
+}
+
+body.logged-in:not(.portaria) .navbar-logo {
+  max-height: 70px;
+}
+
+body.logged-in:not(.portaria) .navbar-text h1 {
+  font-size: 1.8em;
+}
+
+/* Quadro de oficiais mais compacto */
+body.logged-in:not(.portaria) .quadro-de-oficiais {
+  padding: 10px 15px;
+  font-size: 1.2em;
+  margin: 10px auto 0;
+}
+
+body.logged-in:not(.portaria) .datetime {
+  font-size: 14px;
+  padding: 3px 8px;
+}
+
+/* Ajustes adicionais para garantir que tudo caiba */
+body.logged-in:not(.portaria) .btn-add {
+  min-width: 24px;
+  width: 24px;
+  font-size: 14px;
+  padding: 0;
+}
+
+/* Status label simplificado */
+body.logged-in:not(.portaria) .status-label {
+  display: none; /* Remover o texto "A BORDO" para economizar espaço */
+}
+
+/* Melhorar a visualização de linhas presentes/ausentes */
+body.logged-in:not(.portaria) tr.present {
+  background-color: rgba(76, 175, 80, 0.05) !important;
+}
+
+body.logged-in:not(.portaria) tr.absent {
+  background-color: rgba(244, 67, 54, 0.05) !important;
+}
+
+/* Ajustes para os headers */
+body.logged-in:not(.portaria) .table th.text-center {
+  padding: 5px 2px;
+}
+
+/* Botões ocultos no topo - inicialmente invisíveis */
+body.logged-in.portaria .logout-button,
+body.logged-in.portaria .duty-manage-button {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Quando o mouse está sobre o topo, mostrar o botão */
+body.logged-in.portaria #topo:hover .logout-button,
+body.logged-in.portaria #topo:hover .duty-manage-button {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Garantir que a altura do topo se mantenha mesmo quando o logout aparece/desaparece */
+#topo:hover {
+  height: auto;
+}
+
+/* Ajuste para posicionamento correto */
+.navbar-right {
+  position: relative;
+  z-index: 100;
+}
+
+/* Ajustar a transição para ficar mais suave */
+.glass-button.logout-button,
+.glass-button.duty-manage-button {
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background 0.3s ease;
+}
+/* ========================================
+   ADIÇÕES PARA STATUS DAS LINHAS E TOGGLE
+   Adicione esta seção ao final do seu arquivo CSS
+   ======================================== */
+
+/* CSS for row status colors - VERSÃO GERAL (todos os usuários) */
+/* DEPOIS (corrigido) */
+.table tbody tr.present {
+    border-left: 5px solid #28a745 !important;
+    /* SEM background-color */
+}
+
+.table tbody tr.absent {
+    border-left: 5px solid #dc3545 !important;
+    /* SEM background-color */
+}
+
+/* Se quiser um background quase invisível (opcional) */
+.table tbody tr.present td {
+    background-color: rgba(40, 167, 69, 0.01) !important;
+}
+
+.table tbody tr.absent td {
+    background-color: rgba(220, 53, 69, 0.01) !important;
+}
+
+/* Enhanced hover effect for status rows */
+.table tbody tr.present:hover {
+    background-color: rgba(40, 167, 69, 0.15);
+    transform: translateX(2px);
+}
+
+.table tbody tr.absent:hover {
+    background-color: rgba(220, 53, 69, 0.15);
+    transform: translateX(2px);
+}
+
+/* Toggle switch styling - VERSÃO GERAL (sobrescrevendo configurações anteriores) */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #dc3545; /* Default red */
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px; /* Aplicando border-radius diretamente */
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%; /* Aplicando border-radius diretamente */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+input:checked + .slider {
+    background-color: #28a745; /* Green when checked */
+}
+
+input:not(:checked) + .slider {
+    background-color: #dc3545; /* Red when not checked */
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Efeito de focus para acessibilidade */
+.switch input:focus + .slider {
+    box-shadow: 0 0 0 3px rgba(10, 77, 163, 0.3);
+}
+
+/* ========================================
+   AJUSTES ESPECÍFICOS PARA ADMINISTRADOR
+   Sobrescrever apenas para administradores
+   ======================================== */
+
+/* Toggle switch para administradores (tamanho menor, mantendo funcionalidade) */
+body.logged-in:not(.portaria) .switch {
+    position: relative;
+    display: inline-block;
+    width: 36px !important; /* Tamanho menor para admin */
+    height: 20px !important; /* Tamanho menor para admin */
+    margin: 0 auto;
+}
+
+body.logged-in:not(.portaria) .slider {
+    background-color: #dc3545; /* Mantém as cores padrão */
+    border-radius: 20px;
+}
+
+body.logged-in:not(.portaria) .slider:before {
+    position: absolute;
+    content: "";
+    height: 16px !important; /* Proporcional ao tamanho menor */
+    width: 16px !important; /* Proporcional ao tamanho menor */
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+body.logged-in:not(.portaria) input:checked + .slider {
+    background-color: #28a745;
+}
+
+body.logged-in:not(.portaria) input:not(:checked) + .slider {
+    background-color: #dc3545;
+}
+
+body.logged-in:not(.portaria) input:checked + .slider:before {
+    transform: translateX(16px) !important; /* Ajustado para o tamanho menor */
+}
+
+/* Status das linhas para administradores - mantendo as cores mas com estilo mais sutil */
+body.logged-in:not(.portaria) .table tbody tr.present {
+    border-left: 3px solid #28a745; /* Borda mais fina para admin */
+    background-color: rgba(40, 167, 69, 0.05); /* Background mais sutil */
+}
+
+body.logged-in:not(.portaria) .table tbody tr.absent {
+    border-left: 3px solid #dc3545; /* Borda mais fina para admin */
+    background-color: rgba(220, 53, 69, 0.05); /* Background mais sutil */
+}
+
+/* Hover effect para linhas de administrador */
+body.logged-in:not(.portaria) .table tbody tr.present:hover {
+    background-color: rgba(40, 167, 69, 0.08);
+}
+
+body.logged-in:not(.portaria) .table tbody tr.absent:hover {
+    background-color: rgba(220, 53, 69, 0.08);
+}
+
+/* ========================================
+   INDICADORES VISUAIS ADICIONAIS
+   ======================================== */
+
+/* Pulsação sutil para linhas presentes */
+@keyframes subtle-pulse {
+    0% { 
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4);
+        border-left-color: #28a745;
+    }
+    70% { 
+        box-shadow: 0 0 0 2px rgba(40, 167, 69, 0);
+        border-left-color: #34ce57;
+    }
+    100% { 
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+        border-left-color: #28a745;
+    }
+}
+
+/* Aplicar animação apenas quando a linha muda para "present" */
+.table tbody tr.present.just-changed {
+    animation: subtle-pulse 2s ease-out;
+}
+
+/* Remover a classe de animação após a animação terminar */
+.table tbody tr.present.just-changed {
+    animation-fill-mode: forwards;
+}
+
+/* Status label ajustado (caso você queira mostrar texto) */
+.status-label {
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 4px;
+    text-align: center;
+}
+
+.status-label.present {
+    color: #28a745;
+}
+
+.status-label.absent {
+    color: #dc3545;
+}
+
+/* Ocultar status label para administradores (economizar espaço) */
+body.logged-in:not(.portaria) .status-label {
+    display: none;
+}
+
+/* ========================================
+   MEDIA QUERIES PARA RESPONSIVIDADE
+   ======================================== */
+
+@media (max-width: 768px) {
+    /* Em telas menores, manter toggle um pouco maior para facilitar uso em touch */
+    .switch {
+        width: 50px;
+        height: 28px;
+    }
+    
+    .slider:before {
+        height: 22px;
+        width: 22px;
+    }
+    
+    input:checked + .slider:before {
+        transform: translateX(22px);
+    }
+    
+    /* Para admin em mobile, manter tamanho ligeiramente maior */
+    body.logged-in:not(.portaria) .switch {
+        width: 40px !important;
+        height: 22px !important;
+    }
+    
+    body.logged-in:not(.portaria) .slider:before {
+        height: 18px !important;
+        width: 18px !important;
+    }
+    
+    body.logged-in:not(.portaria) input:checked + .slider:before {
+        transform: translateX(18px) !important;
+    }
+}

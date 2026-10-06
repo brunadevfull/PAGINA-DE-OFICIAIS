@@ -1,0 +1,1243 @@
+:root {
+  --background-color-1: #031633;
+  --background-color-2: #084298;
+  --background-color-3: #042454;
+  --espacamento: 4px;
+  --bs-body-font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-body-font-size: 14px;
+  --bs-body-font-weight: 400;
+  --bs-body-color: #212529;
+  --bs-body-bg: #fff;
+}
+ 
+body {
+
+  font-family: var(--bs-body-font-family);
+  font-size: var(--bs-body-font-size);
+  font-weight: var(--bs-body-font-weight);
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('../imagens/mb2.png') no-repeat center center fixed;
+            background-size: cover;
+            opacity: 0.5; /* Controle da opacidade da imagem */
+            z-index: -1; /* Mant�m a imagem no fundo */
+        }
+#topo {
+  width: 100%;
+  background-image: linear-gradient(to bottom, var(--background-color-1), var(--background-color-2));
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  padding: 3px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+  margin-bottom: 0;
+}
+
+.radio-section {
+   
+    text-align: center;
+    margin-top: 15px;
+
+width: 350px;
+}
+
+.radiomarinha{
+width:150px;
+ height:50px;
+margin:10px;
+}
+.navbar-left {
+  display: flex;
+  align-items: center;
+  margin-left: 13em;
+  margin-top: 1em;
+}
+
+.navbar-logo {
+  max-height: 100px;
+  margin-right: 5px;
+}
+audio {
+    margin-top: 10px; /* Espa�amento entre o logo e o player de �udio */
+}
+.navbar-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 30px;
+}
+
+.navbar-text h1 {
+  margin: 0;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+.navbar-text h6 {
+  margin: 0;
+  font-size: 1.0em;
+  font-weight: 500;
+  line-height: 12px;
+  color: rgb(235, 235, 235);
+  font-family: "Octin College RG - Bold", Verdana, Geneva, Tahoma, sans-serif;
+  position: relative;
+  top: -6px;
+}
+
+.navbar-text p {
+  margin-top: 0;
+  font-size: 1.0em;
+}
+
+.header-bottom-area-bg {
+  background-color: var(--background-color-3);
+  padding: 15px 0;
+  text-align: center;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.container {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 0;
+  width: 100%;
+opacity:94%;
+}
+
+.page-header {
+  background-color: #003f87;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 1.2em;
+}
+
+.table {
+  background-color: #f8f9fa;
+  color: #000000;
+}
+
+.table th {
+  background-color: #003f87;
+  color: #ffffff;
+  text-align: center;
+  font-size: 1.1em;
+  padding: 4px;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+.table td {
+  background-color: #e9ecef;
+  
+  font-size: 1.6em;
+  padding: 8px;
+  white-space: nowrap;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+.name-column {
+  display: flex;
+  align-items: center;
+}
+
+.name-column img {
+  margin-right: 8px;
+  width: 60px;
+  height: auto;
+}
+
+.btn-primary {
+  background-color: #003f87;
+  border-color: #003f87;
+}
+
+.btn-primary:hover {
+  background-color: #002855;
+  border-color: #002855;
+}
+
+.btn-success {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-success:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+
+.menu-links-area {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.menu-links-area a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.menu-links-area a:hover {
+  text-decoration: underline;
+}
+
+
+.switch {
+ 
+  position: relative;
+  display: inline-block;
+  width: 80px; 
+  height: 34px; 
+
+
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px; 
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 30px; /* Ajuste conforme necessário */
+  width: 30px; /* Ajuste conforme necessário */
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: green;
+}
+
+input:checked + .slider:before {
+  transform: translateX(46px); /* Ajuste conforme necessário */
+}
+.present .status-label {
+  color: green;
+}
+.absent .status-label {
+  color: red;
+}
+
+
+
+.btn-add {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-add:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+
+.status-label {
+  display: inline-block;
+ 
+  text-align: center;
+  font-weight: bold;
+  vertical-align: middle;
+  font-size: 12px;
+}
+
+.status-label.green {
+  color: white;
+ 
+  
+}
+
+.status-label.red {
+  color: red;
+}
+
+.table tbody tr:nth-child(odd) td {
+  background-color: #e9ecef;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table tbody tr:nth-child(even) td {
+  background-color: #ffffff;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.navbar-left img#papem {
+  margin-right: 3px;
+}
+
+.navbar-left .navbar-text {
+  margin-left: 3px;
+}
+
+.navbar-right {
+
+  display: flex;
+  align-items: center;   
+margin-right: -350px;
+  justify-content: flex-end;
+
+  
+margin-right: -400px;
+}
+
+.datetime {
+  font-size: 0.8em;
+  font-weight: bold;
+  color: #b72222;
+  margin-right: 80px;
+
+  margin-top: 10px;
+}
+
+.highlight {
+  background-color: #53ca48 !important;
+}
+
+.table .location-cell {
+  width: 20px;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+.status-label.green {
+  color: white;
+  font-size: 0.9em;
+  white-space: nowrap;
+
+}
+
+hr {
+  margin: 1rem 0;
+  color: inherit;
+  border: 0;
+  border-top: 1px solid;
+  opacity: .25;
+}
+
+.quadro-de-oficiais {
+  background-color: #e6e7ec;
+  padding: 15px;
+  text-align: center;
+  color: #050f41;
+  font-weight: bold;
+  font-size: 1.5em;
+  border-radius: 8px;
+  margin: 20px auto;
+  }
+  
+/* Estilos para usuários logados */
+body.logged-in .btn-add,
+body.logged-in .btn-danger,
+body.logged-in .btn-primary {
+    display: inline-block;
+}
+
+
+
+/* Aumentar o tamanho da fonte para usuários logados */
+body.logged-in .status-label {
+  display: inline-block;
+
+  text-align: center;
+  font-weight: bold;
+  vertical-align: middle;
+  font-size: 12px;
+}
+.status-cell{
+  text-align: center;
+  vertical-align: middle
+  
+}
+/* Aumentar o tamanho do switch para usuários logados */
+body.logged-in .switch {
+  position: relative;
+    width: 40px; /* Ajuste conforme necessário */
+    height: 25px; /* Ajuste conforme necessário */
+    display: inline-block;
+    vertical-align: middle; 
+}
+body.logged-in .status-label.green {
+  color: white;
+  display: inline-block;
+  vertical-align: middle; 
+  white-space: nowrap;
+}
+body.logged-in .switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 21px; /* Ajuste conforme necessário */
+  width: 21px; /* Ajuste conforme necessário */
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;/* Ajuste conforme necessário */
+}
+
+/* Ajustar a posição do botão dentro do switch */
+body.logged-in input:checked + .slider:before {
+    transform: translateX(14px); /* Ajuste conforme necessário */
+}
+
+
+/* Ajustar o tamanho da fonte das células da tabela */
+body.logged-in .table td,
+body.logged-in .table th {
+    font-size: 14px;
+}
+
+body.logged-in .table th {
+    font-size: 10px; /* Ajuste conforme necessário */
+}
+.alert {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.logout-button {
+
+
+  background-color: #ff0000; /* Cor mais escura para o botão de logout */
+  border-color: #ff0000; /* Cor mais escura */
+  color: white; /* Texto branco para contraste */
+  margin-top:60px;
+  
+}
+body:not(.portaria) .logout-button {
+  display: inline-block; /* Botão visível */
+}
+body.portaria .logout-button  {
+  display: none; /* Botão invisível */
+}
+
+#topo:hover .logout-button {
+  display: inline-block;
+}
+
+
+body.logged-in .status-cell {
+   /* Ajuste a largura mínima conforme necessário */
+   text-align: center;
+   vertical-align: middle;
+   font-size: 12px; /* Tamanho da fonte menor */
+   padding: 2px; /* Reduz o preenchimento */
+   max-width: 60px; /* Define a largura máxima para a célula */
+   width: 60px; /* Define a largura fixa para a célula */
+   overflow: hidden; /* Impede o conteúdo de sair da célula */
+   white-space: nowrap;
+}
+
+body.logged-in .status-label {
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  font-size: 10px; /* Tamanho da fonte menor */
+  white-space: nowrap; /* Impede a quebra de linha */
+}
+
+/* Estilo inicial para esconder o botão */
+.login-button .login {
+  display: none;
+  position: absolute;
+  top: 85px; /* Ajuste conforme necessário */
+  /* Ajuste conforme necessário */
+  z-index: 10;
+  background-color: #5279b4; /* Cor mais escura */
+  border-color: #457dd1; 
+  color: white;
+}
+
+/* Mostra o botão quando o mouse está sobre o contêiner */
+#topo:hover .login-button .login {
+  display: block;
+}
+
+/* Adiciona estilos para o contêiner */
+#topo {
+  position: relative;
+}
+.add-user-button {
+  background-color: #007bff; /* Azul escuro */
+  border-color: #007bff;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin-left: 10px; /* Espaçamento à esquerda */
+  border-radius: 5px; /* Bordas arredondadas */
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.add-user-button:hover {
+  background-color: #0056b3; /* Azul mais escuro no hover */
+  border-color: #0056b3;
+  transform: scale(1.05); /* Aumenta ligeiramente o botão ao passar o mouse */
+}
+
+.add-user-button:active {
+  background-color: #004494; /* Azul ainda mais escuro ao clicar */
+  border-color: #004494;
+  transform: scale(1); /* Remove a escala ao clicar */
+}
+
+
+.glass-button {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  transition: transform 0.3s, background 0.3s;
+  margin-right: 10px;
+  margin-top: 55px;
+}
+
+.glass-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* Estilo para o botão de dropdown */
+.glass-button.dropdown-toggle {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  transition: transform 0.3s, background 0.3s;
+  margin-right: 10px;
+  margin-top: 55px;
+}
+
+.glass-button.dropdown-toggle:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* Estilo para o menu dropdown */
+.dropdown-menu {
+  background-color: var(--background-color-3);
+  border: 1px solid var(--background-color-1);
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  font-size: 13px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+/* Estilo para os itens do menu dropdown */
+.dropdown-menu .dropdown-item {
+  color: white;
+  padding: 10px 20px;
+  transition: background-color 0.3s, color 0.3s;
+  width: 100%;
+}
+
+
+/* Estilo geral do modal */
+.modal-content {
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Cabeçalho do modal */
+.modal-header {
+  background-color: #588cda;
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 15px;
+}
+input:checked + .slider {
+  background-color: green;
+}
+input:not(:checked) + .slider {
+  background-color: red;
+}
+
+.modal-header .close {
+  color: white;
+  opacity: 1;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+/* Corpo do modal */
+.modal-body {
+  padding: 20px;
+}
+
+/* Rodapé do modal */
+.modal-footer {
+  border-top: none;
+  padding: 15px;
+  text-align: right;
+}
+
+/* Botões do modal */
+.modal-footer .btn {
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.modal-footer .btn-primary {
+  background-color: #084298;
+  border-color: #084298;
+}
+
+.modal-footer .btn-primary:hover {
+  background-color: #062a5a;
+  border-color: #062a5a;
+  transform: scale(1.05);
+}
+
+.modal-footer .btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.modal-footer .btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+  transform: scale(1.05);
+}
+
+/* Ajustar o tamanho do modal */
+.modal-dialog {
+  max-width: 500px;
+  margin: 30px auto;
+}
+.input-group-text {
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  color: #495057;
+  display: flex;
+
+}
+
+.input-group-prepend {
+  display: flex;
+  align-items: center;
+}
+
+.input-group .form-control {
+  margin-bottom: 0; /* Remove margens extras */
+}/* Estiliza o dropdown do select2 */
+
+.present .status-label {
+  color: green;
+}
+.absent .status-label {
+  color: red;
+}
+.switch input:checked + .slider {
+  background-color: green;
+}
+.switch input:not(:checked) + .slider {
+  background-color: red;
+}
+.slider.round {
+  border-radius: 34px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+/* Remoção dos estilos específicos para usuários logados */
+/* Estilos específicos para o usuário portaria */
+body.portaria .add-user-button,
+body.portaria 
+body.portaria .modal-footer .btn-primary,
+body.portaria .modal-footer .btn-success,
+body.portaria .modal-footer .btn-danger,
+body.portaria .dropdown-menu {
+  display: none;
+}
+
+body.portaria .status-label{
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  vertical-align: middle;
+  font-size: 12px;
+}
+
+
+
+body.portaria .table td {
+  font-size: 1.6em;
+  padding: 8px;
+   white-space: nowrap;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+body.portaria .table th {
+  background-color: #003f87;
+  color: #ffffff;
+  text-align: center;
+  font-size: 1.1em;
+
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+body.portaria .switch {
+  position: relative;
+  display: inline-block;
+  width: 80px; 
+  height: 34px; 
+
+}
+
+body.portaria .status-label.green{
+  color: white;
+  font-size: 0.9em;
+  white-space: nowrap;
+
+}
+
+body.portaria .slider:before {
+  position: absolute;
+  content: "";
+  height: 60px; /* Ajuste conforme necessário */
+  width: 60px; /* Ajuste conforme necessário */
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+body.portaria input:checked + .slider:before {
+  transform: translateX(46px); /* Ajuste conforme necessário */
+}
+
+body.portaria .status-cell {
+max-width:300px;
+width:142px;
+}
+
+
+
+
+
+body.portaria .switch .slider::before {
+  height: 30px;
+  width: 30px;
+}
+
+
+
+:root {
+  --primary-color: #0a4da3 !important;
+  --primary-light: #2974d8 !important;
+  --primary-dark: #032c66 !important;
+  --secondary-color: #e9f0f9 !important;
+  --accent-color: #ff9800 !important;
+  --text-light: #ffffff !important;
+  --text-dark: #212529 !important;
+  --success-color: #4caf50 !important;
+  --danger-color: #f44336 !important;
+  --border-radius: 10px !important;
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  --transition: all 0.25s ease !important;
+  --spacing-xs: 4px !important;
+  --spacing-sm: 8px !important;
+  --spacing-md: 12px !important;
+  --spacing-lg: 20px !important;
+  --font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  --font-size-sm: 16px !important;
+  --font-size-md: 20px !important;
+  --font-size-lg: 24px !important;
+  --font-size-xl: 32px !important;
+}
+
+body {
+  font-family: var(--font-family) !important;
+  font-size: var(--font-size-md) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.4 !important;
+  background-color: #f5f8fb !important;
+  color: var(--text-dark) !important;
+}
+
+body::before {
+  content: '' !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: url('../imagens/mb2.png') no-repeat center center fixed !important;
+  background-size: cover !important;
+  opacity: 0.08 !important;
+  z-index: -1 !important;
+}
+
+/* Header Styling */
+#topo {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary-color)) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+  padding: 10px 20px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  color: var(--text-light) !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+  min-height: 70px !important;
+}
+
+.navbar-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.navbar-logo {
+  max-height: 70px !important;
+  transition: var(--transition) !important;
+}
+
+.navbar-text {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.navbar-text h1 {
+  margin: 0 !important;
+  font-size: 26px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
+}
+
+.navbar-text h6 {
+  margin: 0 !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.navbar-text p {
+  margin: 0 !important;
+  font-size: 14px !important;
+  font-style: italic !important;
+  opacity: 0.9 !important;
+}
+
+.navbar-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 15px !important;
+}
+
+/* Radio Section */
+.radio-section {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  backdrop-filter: blur(5px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  max-width: 220px !important;
+}
+
+.radiomarinha {
+  width: 140px !important;
+  height: auto !important;
+  margin-bottom: 5px !important;
+}
+
+audio {
+  width: 100% !important;
+  height: 30px !important;
+  border-radius: 15px !important;
+}
+
+/* Main Content - Full Width */
+.quadro-de-oficiais {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
+  color: var(--text-light) !important;
+  padding: 15px 25px !important;
+  border-radius: 10px 10px 0 0 !important;
+  font-weight: 700 !important;
+  font-size: var(--font-size-lg) !important;
+  margin: 20px auto 0 !important;
+  width: 98% !important; /* Quase tela inteira */
+  max-width: 100% !important;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.datetime {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  padding: 6px 12px !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  border-radius: 6px !important;
+  color: var(--text-light) !important;
+}
+
+.container {
+  background-color: white !important;
+  border-radius: 0 0 10px 10px !important;
+  box-shadow: var(--card-shadow) !important;
+  padding: 20px !important;
+  margin: 0 auto !important;
+  width: 98% !important; /* Mesma largura do quadro de oficiais */
+  max-width: 100% !important;
+  opacity: 0.98 !important;
+}
+
+/* Table Styling - Grande e Visível */
+.table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  margin-bottom: 25px !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.table th {
+  background: linear-gradient(to right, var(--primary-color), var(--primary-dark)) !important;
+  color: var(--text-light) !important;
+  padding: 15px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  font-size: 18px !important;
+  text-align: center !important;
+  letter-spacing: 0.5px !important;
+}
+
+.table td {
+  padding: 12px 15px !important;
+  font-size: 22px !important; /* Bem grande para visualização à distância */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  vertical-align: middle !important;
+}
+
+.table tbody tr:nth-child(odd) td {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+}
+
+.table tbody tr:hover td {
+  background-color: rgba(10, 77, 163, 0.08) !important;
+}
+
+.name-column {
+  display: flex !important;
+  align-items: center !important;
+  gap: 15px !important;
+}
+
+.name-column img {
+  width: 55px !important; /* Grande para visualização à distância */
+  height: 55px !important;
+  object-fit: contain !important;
+  transition: var(--transition) !important;
+}
+
+/* Status Switch - Grande e Visível */
+.status-cell {
+  width: 130px !important;
+  text-align: center !important;
+}
+
+.switch {
+  position: relative !important;
+  display: inline-block !important;
+  width: 80px !important; /* Muito maior para visualização à distância */
+  height: 40px !important;
+  margin: 0 auto !important;
+}
+
+.switch input {
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.slider {
+  position: absolute !important;
+  cursor: pointer !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background-color: #ccc !important;
+  transition: var(--transition) !important;
+  border-radius: 40px !important;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2) !important;
+}
+
+.slider:before {
+  position: absolute !important;
+  content: "" !important;
+  height: 32px !important;
+  width: 32px !important;
+  left: 4px !important;
+  bottom: 4px !important;
+  background-color: white !important;
+  transition: var(--transition) !important;
+  border-radius: 50% !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+}
+
+input:checked + .slider {
+  background-color: var(--success-color) !important;
+}
+
+input:not(:checked) + .slider {
+  background-color: var(--danger-color) !important;
+}
+
+input:checked + .slider:before {
+  transform: translateX(40px) !important;
+}
+
+.status-label {
+  display: block !important;
+  margin-top: 5px !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+}
+
+.present .status-label {
+  color: var(--success-color) !important;
+}
+
+.absent .status-label {
+  color: var(--danger-color) !important;
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 20px !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+  font-size: 16px !important;
+  cursor: pointer !important;
+  transition: var(--transition) !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15) !important;
+  border: none !important;
+}
+
+.btn-primary {
+  background-color: var(--primary-color) !important;
+  color: var(--text-light) !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark) !important;
+}
+
+.glass-button {
+  background: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(5px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: white !important;
+  padding: 10px 20px !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  transition: var(--transition) !important;
+  margin-top: 0 !important;
+  font-size: 16px !important;
+}
+
+.glass-button:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Modal Styling */
+.modal-content {
+  border-radius: 10px !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25) !important;
+  border: none !important;
+  overflow: hidden !important;
+}
+
+.modal-header {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
+  color: var(--text-light) !important;
+  border-bottom: none !important;
+  padding: 15px 20px !important;
+  font-size: 20px !important;
+}
+
+.modal-body {
+  padding: 20px !important;
+  font-size: 18px !important;
+}
+
+.modal-footer {
+  border-top: none !important;
+  padding: 15px 20px !important;
+}
+
+/* Layout de 3 colunas para tabelas */
+.row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  margin-right: -10px !important;
+  margin-left: -10px !important;
+}
+
+.col-md-4 {
+  flex: 0 0 33.333333% !important;
+  max-width: 33.333333% !important;
+  padding-right: 10px !important;
+  padding-left: 10px !important;
+}
+
+/* Otimização para telas pequenas */
+@media (max-width: 1200px) {
+  .col-md-4 {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .col-md-4 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  
+  #topo {
+    flex-wrap: wrap !important;
+  }
+  
+  .navbar-left {
+    margin-left: 0 !important;
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  
+  .navbar-right {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+/* Melhorias de visibilidade a distância */
+tr.present {
+  position: relative !important;
+}
+
+tr.present::after {
+  content: '' !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  height: 100% !important;
+  width: 6px !important;
+  background-color: var(--success-color) !important;
+}
+
+tr.absent {
+  position: relative !important;
+}
+
+tr.absent::after {
+  content: '' !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  height: 100% !important;
+  width: 6px !important;
+  background-color: var(--danger-color) !important;
+}
+
+/* Adicionar pulsação mais visível nos switches ativos */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.6); }
+  70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+}
+
+.present .slider {
+  animation: pulse 2s infinite !important;
+}
+
+/* Adicionar indicador extra para presença */
+tr.present td:first-child {
+  border-left: 6px solid var(--success-color) !important;
+}
+
+tr.absent td:first-child {
+  border-left: 6px solid var(--danger-color) !important;
+}
+
+/* Destaque para linha hover */
+.table tbody tr:hover td {
+  transform: scale(1.01) !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05) !important;
+  z-index: 1 !important;
+  position: relative !important;
+}
