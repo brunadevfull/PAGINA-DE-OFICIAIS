@@ -1,9 +1,8 @@
 <?php
-// Cabeçalhos para permitir CORS
+// CORS aberto apenas para leitura. A escrita (PUT) exige sessão e token CSRF, ou seja, mesma origem.
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, PUT, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type, Authorization');
-error_log("Proxy duty officers chamado com método: " . $_SERVER['REQUEST_METHOD']);
+header('Access-Control-Allow-Methods: GET, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
 // Se for uma requisição OPTIONS, apenas retornar com os cabeçalhos CORS
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
@@ -21,6 +20,11 @@ try {
             handleGet($repository);
             break;
         case 'PUT':
+            // Sessão e conexão do banco de oficiais só são necessárias para escrever
+            require_once __DIR__ . '/includes/bootstrap.php';
+            // Qualquer usuário logado pode gerir o oficial de serviço
+            require_login(true);
+            csrf_verify(true);
             handlePut($repository);
             break;
         default:

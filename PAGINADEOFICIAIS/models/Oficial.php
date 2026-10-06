@@ -1,6 +1,8 @@
 <?php
 
 class Oficial {
+    const STATUSES = ['bordo', 'terra'];
+
     public static function all() {
         global $pdo;
         $stmt = $pdo->query('
@@ -19,7 +21,7 @@ class Oficial {
         $status = $data['status'];
         $localizacao = (int)$data['localizacao'];
 
-        if (empty($nome) || empty($status) || $posto_id <= 0 || $localizacao < 0) {
+        if (empty($nome) || !in_array($status, self::STATUSES, true) || $posto_id <= 0 || $localizacao < 0) {
             throw new Exception("Dados inválidos fornecidos.");
         }
 
@@ -34,7 +36,8 @@ class Oficial {
             $pdo->commit();
         } catch (PDOException $e) {
             $pdo->rollBack();
-            throw new Exception("Falha ao adicionar oficial: " . htmlspecialchars($e->getMessage()));
+            error_log("Falha ao adicionar oficial: " . $e->getMessage());
+            throw new Exception("Falha ao adicionar oficial.");
         }
     }
 
@@ -46,7 +49,7 @@ class Oficial {
         $status = $data['status'];
         $localizacao = (int)$data['localizacao'];
 
-        if (empty($nome) || empty($status) || $posto_id <= 0 || $localizacao < 0) {
+        if ($id <= 0 || empty($nome) || !in_array($status, self::STATUSES, true) || $posto_id <= 0 || $localizacao < 0) {
             throw new Exception("Dados inválidos fornecidos.");
         }
 
@@ -58,7 +61,8 @@ class Oficial {
             $pdo->commit();
         } catch (PDOException $e) {
             $pdo->rollBack();
-            throw new Exception("Falha ao editar oficial: " . htmlspecialchars($e->getMessage()));
+            error_log("Falha ao editar oficial: " . $e->getMessage());
+            throw new Exception("Falha ao editar oficial.");
         }
     }
 
@@ -66,11 +70,20 @@ class Oficial {
         global $pdo;
         $id = (int)$id;
 
+        if ($id <= 0) {
+            throw new Exception("Dados inválidos fornecidos.");
+        }
+
         $pdo->beginTransaction();
         try {
             $stmt = $pdo->prepare("SELECT localizacao FROM oficiais WHERE id = :id");
             $stmt->execute([':id' => $id]);
             $localizacao = $stmt->fetchColumn();
+
+            if ($localizacao === false) {
+                $pdo->rollBack();
+                throw new Exception("Oficial não encontrado.");
+            }
 
             $stmt = $pdo->prepare("DELETE FROM oficiais WHERE id = :id");
             $stmt->execute([':id' => $id]);
@@ -81,9 +94,8 @@ class Oficial {
             $pdo->commit();
         } catch (PDOException $e) {
             $pdo->rollBack();
-            throw new Exception("Falha ao remover oficial: " . htmlspecialchars($e->getMessage()));
+            error_log("Falha ao remover oficial: " . $e->getMessage());
+            throw new Exception("Falha ao remover oficial.");
         }
     }
 }
-?>
-

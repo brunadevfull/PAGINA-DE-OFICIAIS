@@ -1,60 +1,49 @@
 <?php
-include 'password_compat.php';
+require_once __DIR__ . '/../includes/bootstrap.php';
 
-session_start();
-include $_SERVER['DOCUMENT_ROOT'].'/config/config.php';
+// Qualquer usuário logado troca a própria senha
+require_post('any');
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $current_password = $_POST['current_password'];
-    $new_password = $_POST['new_password'];
-    $confirm_password = $_POST['confirm_password'];
+const MIN_PASSWORD_LENGTH = 8;
 
-   if ($new_password != $confirm_password) {
-        $_SESSION['error'] = 'A nova senha e a confirmação não coincidem.';
-        header('Location: ../index.php');
-        exit();
-    }
-
-    if (!isset($_SESSION['user_id'])) {
-        $_SESSION['error'] = 'Usuário não autenticado.';
-        header('Location: ../index.php#passwordErrorModal');
-        exit();
-    }
-
-    $user_id = $_SESSION['user_id'];
-
-    try {
-        // Recupere os dados do usuário
-        $stmt = $pdo->prepare('SELECT password FROM users WHERE id = :id AND is_admin = TRUE');
-        $stmt->execute(['id' => $user_id]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($user && password_verify($current_password, $user['password'])) {
-            $new_password_hash = password_hash($new_password, PASSWORD_BCRYPT);
-            $stmt = $pdo->prepare('UPDATE users SET password = :password WHERE id = :id AND is_admin = TRUE');
-            $updateSuccess = $stmt->execute(['password' => $new_password_hash, 'id' => $user_id]);
-
-            if ($updateSuccess) {
-                $_SESSION['password_change_success'] = 'Senha redefinida com sucesso!';
-                header('Location: ../index.php#passwordChangeSuccessModal'); 
-
-//a porcaria do modal que ta la no html
-
-                exit();
-            } else {
-                $_SESSION['error'] = 'Erro ao atualizar a senha.';
-                header('Location: ../index.php#passwordErrorModal');
-                exit();
-            }
-        } else {
-            $_SESSION['error'] = 'Senha atual incorreta.';
-            header('Location: ../index.php');
-            exit();
-        }
-    } catch (PDOException $e) {
-        $_SESSION['error'] = 'Erro ao redefinir senha: ' . $e->getMessage();
-        header('Location: ../index.php#passwordErrorModal');
-        exit();
-    }
+function change_password_fail(string $message, string $hash = '#passwordErrorModal'): void
+{
+    $_SESSION['error'] = $message;
+    header('Location: ../index.php' . $hash);
+    exit();
 }
-?>
+
+$current_password = (string)($_POST['current_password'] ?? '');
+$new_password = (string)($_POST['new_password'] ?? '');
+$confirm_password = (string)($_POST['confirm_password'] ?? '');
+
+if ($new_password !== $confirm_password) {
+    change_password_fail('A nova senha e a confirmação não coincidem.', '');
+}
+
+if (strlen($new_password) < MIN_PASSWORD_LENGTH) {
+    change_password_fail('A senha deve ter pelo menos ' . MIN_PASSWORD_LENGTH . ' caracteres.', '');
+}
+
+$user_id = $_SESSION['user_id'];
+
+try {
+    $stmt = $pdo->prepare('SELECT password FROM users WHERE id = :id');
+    $stmt->execute(['id' => $user_id]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$user || !password_verify($current_password, $user['password'])) {
+        change_password_fail('Senha atual incorreta.', '');
+    }
+
+    $new_password_hash = password_hash($new_password, PASSWORD_BCRYPT);
+    $stmt = $pdo->prepare('UPDATE users SET password = :password WHERE id = :id');
+    $stmt->execute(['password' => $new_password_hash, 'id' => $user_id]);
+
+    $_SESSION['password_change_success'] = 'Senha redefinida com sucesso!';
+    header('Location: ../index.php#passwordChangeSuccessModal');
+    exit();
+} catch (PDOException $e) {
+    error_log('Erro ao trocar senha: ' . $e->getMessage());
+    change_password_fail('Erro ao redefinir senha.');
+}

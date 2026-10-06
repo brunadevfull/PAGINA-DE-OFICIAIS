@@ -13,7 +13,9 @@ class OficialController {
         $body_class = $is_logged_in ? 'logged-in' : 'logged-out';
 
         // Obtém os oficiais locais
+        require_once __DIR__ . '/../includes/OficialStatusStore.php';
         $oficiais = Oficial::all();
+        $statusData = OficialStatusStore::all();
 
         $personnelRepository = new MilitaryPersonnelRepository();
 
@@ -46,20 +48,20 @@ class OficialController {
     public function add() {
         include '../models/Oficial.php';
         Oficial::add($_POST);
-        header('Location: ../index.php');
     }
 
     public function edit() {
         include '../models/Oficial.php';
+        require_once __DIR__ . '/../includes/OficialStatusStore.php';
+
         Oficial::edit($_POST);
-        header('Location: ../index.php');
+
+        // O quadro exibe o status temporário (arquivo) acima do banco; sem isto a edição não apareceria
+        OficialStatusStore::set((int)$_POST['id'], $_POST['status']);
     }
 
     public function remove() {
         include '../models/Oficial.php';
-        Oficial::remove($_POST['id']);
-        header('Location: ../index.php');
+        Oficial::remove($_POST['id'] ?? 0);
     }
 }
-?>
-

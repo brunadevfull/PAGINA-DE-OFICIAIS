@@ -5,18 +5,8 @@ include 'views/partials/header.php';
 include_once 'sunset_system_db.php';
 SunsetSystemDB::init($pdo);
 $todaySunsetTime = SunsetSystemDB::getTodaysSunsetTime();
-$tempFile = sys_get_temp_dir() . '/oficiais_status.json';
-
-
-
-if (file_exists($tempFile)) {
-    $statusData = json_decode(file_get_contents($tempFile), true);
-    if ($statusData === null) {
-        $statusData = []; // Inicializa como um array vazio se a decodificaÃ§Ã£o falhar
-    }
-} else {
-    $statusData = [];
-}
+// $statusData (status temporário bordo/terra) vem de OficialController::index()
+$statusData = $statusData ?? [];
 
 
 
@@ -345,18 +335,18 @@ for ($i = 0; $i < 3; $i++): ?>
            $statusData[$oficial['id']] : $oficial['status'];
           $checked = $status === 'bordo' ? 'checked' : '';
           ?>
-    <tr id='oficial-<?php echo $oficial['id']; ?>' 
-    data-oficial-id='<?php echo $oficial['id']; ?>' 
+    <tr id='oficial-<?php echo (int)$oficial['id']; ?>'
+    data-oficial-id='<?php echo (int)$oficial['id']; ?>'
     class='<?php echo $status === 'bordo' ? "present" : "absent"; ?>'>
 <?php if ($is_admin):  ?>
-              <td class='location-cell'><?php echo $oficial['localizacao']; ?></td>
+              <td class='location-cell'><?php echo (int)$oficial['localizacao']; ?></td>
             <?php endif; ?>
-            <td class='name-column'><img src='<?php echo $oficial['imagem']; ?>' width='80px'> <?php echo $oficial['descricao'] . ' ' . $oficial['nome']; ?></td>
+            <td class='name-column'><img src='<?php echo e($oficial['imagem']); ?>' width='80px'> <?php echo e($oficial['descricao'] . ' ' . $oficial['nome']); ?></td>
             <td class='text-center status-cell'>
               <label class='switch'>
 <input type='checkbox' 
-       data-id='<?php echo $oficial['id']; ?>' 
-       data-name='<?php echo $oficial['nome']; ?>' 
+       data-id='<?php echo (int)$oficial['id']; ?>'
+       data-name='<?php echo e($oficial['nome']); ?>'
        <?php echo $checked; ?>>
 
               <span class='slider round'></span>
@@ -364,12 +354,12 @@ for ($i = 0; $i < 3; $i++): ?>
             </td>
             <?php if ($is_admin): ?>
               <td class='text-center'>
-                <button class='btn btn-add' onclick='abrirModalAdicionar(<?php echo $oficial['localizacao']; ?>)'>+</button>
-                <button class='btn btn-danger' onclick='window.excluirOficial(<?php echo $oficial['id']; ?>)'>Excluir</button>
-                <button class='btn btn-primary' onclick='abrirModalEditar(<?php echo $oficial['id']; ?>, "<?php echo $oficial['nome']; ?>",
-                <?php echo $oficial['posto_id']; ?>, 
-                "<?php echo $status; ?>",
-                 <?php echo $oficial['localizacao']; ?>)'>Editar</button>
+                <button class='btn btn-add' onclick='abrirModalAdicionar(<?php echo (int)$oficial['localizacao']; ?>)'>+</button>
+                <button class='btn btn-danger' onclick='window.excluirOficial(<?php echo (int)$oficial['id']; ?>)'>Excluir</button>
+                <button class='btn btn-primary' onclick='abrirModalEditar(<?php echo (int)$oficial['id']; ?>, <?php echo e(json_encode($oficial['nome'])); ?>,
+                <?php echo (int)$oficial['posto_id']; ?>,
+                <?php echo e(json_encode($status)); ?>,
+                 <?php echo (int)$oficial['localizacao']; ?>)'>Editar</button>
               </td>
             <?php endif; ?>
           </tr>
@@ -394,6 +384,7 @@ for ($i = 0; $i < 3; $i++): ?>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <form id="addOfficialForm" method="POST" action="views/process_add_official.php">
+        <?php echo csrf_field(); ?>
         <div class="modal-header">
           <h5 class="modal-title">Adicionar Oficial</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -412,7 +403,7 @@ for ($i = 0; $i < 3; $i++): ?>
   <select class="form-control" id="posto" name="posto" required>
     <option value="">Selecione um posto</option>
     <?php foreach ($postos as $posto): ?>
-      <option value="<?php echo $posto['id']; ?>" data-img="<?php echo $posto['imagem']; ?>"><?php echo $posto['descricao']; ?></option>    <?php endforeach; ?>
+      <option value="<?php echo (int)$posto['id']; ?>" data-img="<?php echo e($posto['imagem']); ?>"><?php echo e($posto['descricao']); ?></option>    <?php endforeach; ?>
   </select>
 </div>
           <div class="form-group">
@@ -441,6 +432,7 @@ for ($i = 0; $i < 3; $i++): ?>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <form id="editOfficialForm" method="POST" action="views/process_edit_official.php">
+        <?php echo csrf_field(); ?>
         <div class="modal-header">
           <h5 class="modal-title">Editar Oficial</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -458,7 +450,7 @@ for ($i = 0; $i < 3; $i++): ?>
             <select class="form-control" id="edit_posto" name="posto" required>
               <option value="">Selecione um posto</option>
               <?php foreach ($postos as $posto): ?>
-                <option value="<?php echo $posto['id']; ?>"><?php echo $posto['descricao']; ?></option>
+                <option value="<?php echo (int)$posto['id']; ?>"><?php echo e($posto['descricao']); ?></option>
               <?php endforeach; ?>
             </select>
           </div>
