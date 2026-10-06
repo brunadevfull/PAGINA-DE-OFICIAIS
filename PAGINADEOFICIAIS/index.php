@@ -1,6 +1,5 @@
 <?php
-session_start();
-include 'config/config.php';
+require_once __DIR__ . '/includes/bootstrap.php';
 include 'controllers/OficialController.php';
 include 'controllers/DutyOfficerController.php';
 

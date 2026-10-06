@@ -1,52 +1,48 @@
 <?php
-include 'password_compat.php';
-session_start();
-include $_SERVER['DOCUMENT_ROOT'].'/config/config.php';
+require_once __DIR__ . '/../includes/bootstrap.php';
 
-$response = [];
+require_post('admin');
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $is_admin = isset($_POST['is_admin']) ? 1 : 0;
+// Sem Content-Type JSON de propósito: js/scripts.js faz JSON.parse(response) sobre o texto bruto
+header('Content-Type: text/html; charset=utf-8');
 
-    try {
-        $stmt = $pdo->prepare('SELECT COUNT(*) FROM users WHERE username = :username');
-        $stmt->execute(['username' => $username]);
-        $count = $stmt->fetchColumn();
+const MIN_PASSWORD_LENGTH = 8;
 
-        if ($count > 0) {
-            // Define a mensagem de erro corretamente
-            $_SESSION['error'] = 'Usuário já existe.';
-            $response['status'] = 'error';
-            $response['message'] = $_SESSION['error'];
-            echo json_encode($response);
-            // Limpa a variável de sessão de erro após o uso
-            unset($_SESSION['error']);
-            exit();
-        }
-
-        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-        $stmt = $pdo->prepare('INSERT INTO users (username, password, is_admin) VALUES (:username, :password, :is_admin)');
-        $stmt->execute(['username' => $username, 'password' => $hashed_password, 'is_admin' => $is_admin]);
-
-        $_SESSION['success'] = 'Usuário adicionado com sucesso.';
-        $response['status'] = 'success';
-        $response['message'] = $_SESSION['success'];
-        echo json_encode($response);
-
-        // Limpa a variável de sessão de sucesso após o uso
-        unset($_SESSION['success']);
-        exit();
-    } catch (PDOException $e) {
-        $_SESSION['error'] = 'Erro ao adicionar usuário: ' . $e->getMessage();
-        $response['status'] = 'error';
-        $response['message'] = $_SESSION['error'];
-        echo json_encode($response);
-
-        // Limpa a variável de sessão de erro após o uso
-        unset($_SESSION['error']);
-        exit();
-    }
+function add_user_respond(string $status, string $message): void
+{
+    echo json_encode(['status' => $status, 'message' => $message], JSON_UNESCAPED_UNICODE);
+    exit();
 }
-?>
+
+$username = trim((string)($_POST['username'] ?? ''));
+$password = (string)($_POST['password'] ?? '');
+$is_admin = isset($_POST['is_admin']) ? 1 : 0;
+
+if ($username === '') {
+    add_user_respond('error', 'Informe o nome do usuário.');
+}
+
+if (strlen($password) < MIN_PASSWORD_LENGTH) {
+    add_user_respond('error', 'A senha deve ter pelo menos ' . MIN_PASSWORD_LENGTH . ' caracteres.');
+}
+
+try {
+    $stmt = $pdo->prepare('SELECT COUNT(*) FROM users WHERE username = :username');
+    $stmt->execute(['username' => $username]);
+
+    if ($stmt->fetchColumn() > 0) {
+        add_user_respond('error', 'Usuário já existe.');
+    }
+
+    $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+    $stmt = $pdo->prepare('INSERT INTO users (username, password, is_admin) VALUES (:username, :password, :is_admin)');
+    $stmt->bindValue(':username', $username);
+    $stmt->bindValue(':password', $hashed_password);
+    $stmt->bindValue(':is_admin', $is_admin === 1, PDO::PARAM_BOOL);
+    $stmt->execute();
+
+    add_user_respond('success', 'Usuário adicionado com sucesso.');
+} catch (PDOException $e) {
+    error_log('Erro ao adicionar usuário: ' . $e->getMessage());
+    add_user_respond('error', 'Erro ao adicionar usuário.');
+}

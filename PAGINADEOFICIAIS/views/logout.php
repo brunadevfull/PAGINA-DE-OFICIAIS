@@ -1,23 +1,20 @@
 <?php
-// Inicia a sessão
-session_start();
+require_once __DIR__ . '/../includes/bootstrap.php';
 
-// Limpa todas as variáveis de sessão
-$_SESSION = array();
+// Logout por POST com token CSRF, para que um link ou imagem de terceiros não derrube a sessão
+require_post('none');
 
-// Se você deseja destruir a sessão completamente, exclua o cookie de sessão
-if (ini_get("session.use_cookies")) {
+$_SESSION = [];
+
+if (ini_get('session.use_cookies')) {
     $params = session_get_cookie_params();
     setcookie(session_name(), '', time() - 42000,
-        $params["path"], $params["domain"],
-        $params["secure"], $params["httponly"]
+        $params['path'], $params['domain'],
+        $params['secure'], $params['httponly']
     );
 }
 
-// Finalmente, destrói a sessão
 session_destroy();
 
-// Redireciona para a página de login ou para a página inicial
 header('Location: ../index.php');
 exit();
-?>

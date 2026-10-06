@@ -60,6 +60,24 @@ class DutyAssignmentsRepository
         $masterRank = $masterRank === '' ? null : $masterRank;
         $validFrom = $data['validFrom'] ?? null;
 
+        // Registrar só um dos dois é permitido: o outro é herdado da escala vigente,
+        // senão a nova linha (que é a que vale) apagaria o nome ausente.
+        if ($officerName === null || $masterName === null) {
+            $current = $this->getCurrentAssignment();
+
+            if ($current !== null) {
+                if ($officerName === null) {
+                    $officerName = $current['officerName'];
+                    $officerRank = $current['officerRank'];
+                }
+
+                if ($masterName === null) {
+                    $masterName = $current['masterName'];
+                    $masterRank = $current['masterRank'];
+                }
+            }
+        }
+
         if ($validFrom instanceof DateTimeInterface) {
             $validFromString = $validFrom->format('Y-m-d H:i:s');
         } elseif (is_string($validFrom) && trim($validFrom) !== '') {
@@ -78,9 +96,11 @@ class DutyAssignmentsRepository
             );
 
             $statement->execute([
-                ':officer_name' => $officerName,
+                // Colunas de nome são NOT NULL no esquema compartilhado com o PLASA-DADM;
+                // na primeira escala registrada com um só nome, o outro fica vazio.
+                ':officer_name' => $officerName ?? '',
                 ':officer_rank' => $officerRank,
-                ':master_name' => $masterName,
+                ':master_name' => $masterName ?? '',
                 ':master_rank' => $masterRank,
                 ':valid_from' => $validFromString,
             ]);
@@ -204,7 +224,8 @@ class DutyAssignmentsRepository
     private function createDateTimeFromString(string $value): DateTimeImmutable
     {
         try {
-            return new DateTimeImmutable($value);
+            // TIMESTAMP sem fuso do banco é gravado em UTC; valores com offset explícito mantêm o offset
+            return new DateTimeImmutable($value, new DateTimeZone('UTC'));
         } catch (Exception $exception) {
             throw new RuntimeException('Data/hora inválida informada.', 0, $exception);
         }

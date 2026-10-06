@@ -97,11 +97,7 @@ class DutyOfficerController {
 
     private function userCanManageDutyOfficers(): bool
     {
-        $isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'];
-        $username = strtolower($_SESSION['username'] ?? '');
-
-        return isset($_SESSION['user_id']) && ($isAdmin || $username === 'eor');
+        // Regra de negócio: qualquer usuário logado pode gerir o oficial de serviço
+        return isset($_SESSION['user_id']);
     }
 }
-?>
-

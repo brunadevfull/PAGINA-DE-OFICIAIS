@@ -1,37 +1,33 @@
 <?php
-include 'password_compat.php';
+require_once __DIR__ . '/../includes/bootstrap.php';
 
-session_start();
-include $_SERVER['DOCUMENT_ROOT'].'/config/config.php';
+require_post('none');
 
-$username = $_POST['username'];
-$password = $_POST['password'];
+$username = trim((string)($_POST['username'] ?? ''));
+$password = (string)($_POST['password'] ?? '');
 
-// Prepare a statement to fetch the user data
 $stmt = $pdo->prepare('SELECT * FROM users WHERE username = ?');
 $stmt->execute([$username]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($user && password_verify($password, $user['password'])) {
-    // Set session variables
+    // Novo ID de sessão e novo token CSRF após autenticar (evita fixação de sessão)
+    session_regenerate_id(true);
+    unset($_SESSION['csrf_token']);
+
     $_SESSION['user_id'] = $user['id'];
-    $_SESSION['is_admin'] = $user['is_admin'];
-    $_SESSION['username'] = $user['username']; 
-    
-    // Capture the client IP address
+    $_SESSION['is_admin'] = in_array($user['is_admin'], [true, 't', 'true', '1', 1], true);
+    $_SESSION['username'] = $user['username'];
+
     $client_ip_address = $_SERVER['REMOTE_ADDR'];
 
-    // Insert a record into the login_audit table
     $audit_stmt = $pdo->prepare('INSERT INTO login_audit (user_id, username, ip_cliente) VALUES (?, ?, ?)');
     $audit_stmt->execute([$user['id'], $user['username'], $client_ip_address]);
 
-    // Redirect to the index page
     header('Location: ../index.php');
     exit();
-} else {
-    // Set an error message and redirect back to the login page
-    $_SESSION['login_error'] = 'Usuário ou senha incorretos.';
-    header('Location: ../index.php#loginModal');
-    exit();
 }
-?>
+
+$_SESSION['login_error'] = 'Usuário ou senha incorretos.';
+header('Location: ../index.php#loginModal');
+exit();

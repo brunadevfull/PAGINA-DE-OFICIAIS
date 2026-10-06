@@ -1,25 +1,15 @@
 <?php
-session_start();
-include '../config/config.php';
-include '../controllers/OficialController.php';
+require_once __DIR__ . '/../includes/bootstrap.php';
+require_once __DIR__ . '/../controllers/OficialController.php';
 
-if (!isset($_SESSION['user_id']) ) {
-    header('Location: login.php');
-    exit();
-}
+require_post('admin');
 
 $controller = new OficialController();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    try {
-        $controller->edit();
-        echo "<script>
-                $(document).ready(function() {
-                    $('#editSuccessModal').modal('show');
-                });
-              </script>";
-    } catch (Exception $e) {
-        echo "Erro ao editar oficial: " . htmlspecialchars($e->getMessage());
-    }
+try {
+    $controller->edit();
+    echo 'Oficial editado com sucesso.';
+} catch (Exception $e) {
+    http_response_code(400);
+    echo 'Erro ao editar oficial: ' . e($e->getMessage());
 }
-?>

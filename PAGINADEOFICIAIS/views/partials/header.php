@@ -1,18 +1,17 @@
- <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/includes/sunset_data.php';?> 
+ <?php include_once __DIR__ . '/../../includes/sunset_data.php';?>
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-include $_SERVER['DOCUMENT_ROOT'].'/config/config.php';
+require_once __DIR__ . '/../../includes/bootstrap.php';
+global $pdo;
 
-// Verifique se o usuÃ¡rio estÃ¡ logado
-$is_logged_in = isset($_SESSION['user_id']);
-$is_admin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'];
-$is_portaria = isset($_SESSION['user_id']) && !$is_admin;
+$is_logged_in = auth_is_logged_in();
+$is_admin = auth_is_admin();
+$is_portaria = $is_logged_in && !$is_admin;
 $username = strtolower($_SESSION['username'] ?? '');
+// Regra de negócio: qualquer usuário logado gere o oficial de serviço
 $can_manage_duty_officers = $is_logged_in;
 
-
+$postos = [];
+$usuarios = [];
 
 // Recupere os postos do banco de dados
 try {
@@ -20,14 +19,17 @@ try {
     $stmt->execute();
     $postos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    echo "Erro ao recuperar postos: " . $e->getMessage();
+    error_log('Erro ao recuperar postos: ' . $e->getMessage());
 }
 
-try {
-  $stmt = $pdo->query('SELECT id, username FROM users');
-  $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-  echo "Erro ao recuperar usuÃ¡rios: " . $e->getMessage();
+// A lista de usuários só é necessária (e só é enviada ao navegador) para o administrador
+if ($is_admin) {
+    try {
+        $stmt = $pdo->query('SELECT id, username FROM users');
+        $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log('Erro ao recuperar usuários: ' . $e->getMessage());
+    }
 }
 
 $officerOptions = $officerOptions ?? [];
@@ -44,7 +46,12 @@ $dutyOfficersApiUrl = ($scriptDirectory === '' ? '' : $scriptDirectory) . '/prox
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <title>PAPEM - Quadro de Oficiais</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     <script src="../../js/jquery.min.js"></script>
+    <script>
+    // Todo POST feito via jQuery leva o token CSRF no cabeçalho
+    $.ajaxSetup({ headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') } });
+    </script>
     <link href="../../css/select2.min.css" rel="stylesheet" />
  <script src="../../js/temperature-bagde.js"></script>
     <script src="../../js/select2.min.js"></script>
@@ -129,8 +136,15 @@ $bodyClassAttribute = empty($bodyClasses) ? '' : ' class="' . implode(' ', $body
         
     <?php endif; ?>
 
-    <!-- Botão de Logout -->
-    <button class="glass-button logout-button" onclick="window.location.href='views/logout.php'">Logout</button>
+    <?php if ($is_portaria): ?>
+        <button class="glass-button" type="button" data-toggle="modal" data-target="#changePasswordModal">Alterar Senha</button>
+    <?php endif; ?>
+
+    <!-- Botão de Logout (POST com token CSRF) -->
+    <form action="views/logout.php" method="POST" style="display:inline;">
+        <?php echo csrf_field(); ?>
+        <button class="glass-button logout-button" type="submit">Logout</button>
+    </form>
 <?php else: ?>
     <button class="btn btn-primary login-button" data-toggle="modal" data-target="#loginModal">Login</button>
 <?php endif; ?>
@@ -463,10 +477,11 @@ $bodyClassAttribute = empty($bodyClasses) ? '' : ' class="' . implode(' ', $body
       <div class="modal-body">
         <?php if (isset($_SESSION['login_error'])): ?>
           <div class="alert alert-danger">
-            <?php echo $_SESSION['login_error']; unset($_SESSION['login_error']); ?>
+            <?php echo e($_SESSION['login_error']); unset($_SESSION['login_error']); ?>
           </div>
         <?php endif; ?>
         <form action="views/process_login.php" method="POST">
+          <?php echo csrf_field(); ?>
           <div class="form-group">
             <label for="username">Usuário:</label>
             <input type="text" class="form-control" id="username" name="username" required>
@@ -483,6 +498,7 @@ $bodyClassAttribute = empty($bodyClasses) ? '' : ' class="' . implode(' ', $body
 </div>
 
 
+<?php if ($is_admin): ?>
 <!-- Modal Adicionar UsuÃ¡rio -->
 <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -495,6 +511,7 @@ $bodyClassAttribute = empty($bodyClasses) ? '' : ' class="' . implode(' ', $body
             </div>
             <div class="modal-body">
                 <form id="addUserForm" action="views/process_add_user.php" method="POST">
+                    <?php echo csrf_field(); ?>
                     <div class="form-group">
                         <label for="username">Usuário:</label>
                         <input type="text" class="form-control" id="username" name="username" required>
@@ -557,6 +574,8 @@ $bodyClassAttribute = empty($bodyClasses) ? '' : ' class="' . implode(' ', $body
 </div>
 
 
+<?php endif; // $is_admin: modais de cadastro de usuário ?>
+
 <!-- Modal de Erro -->
 <div id="passwordErrorModal" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -598,6 +617,7 @@ $bodyClassAttribute = empty($bodyClasses) ? '' : ' class="' . implode(' ', $body
     </div>
 </div>
 
+<?php if ($is_logged_in): ?>
 <!-- Modal Redefinir Senha -->
 <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -610,6 +630,7 @@ $bodyClassAttribute = empty($bodyClasses) ? '' : ' class="' . implode(' ', $body
       </div>
       <div class="modal-body">
         <form id="changePasswordForm" action="views/process_change_password.php" method="POST">
+          <?php echo csrf_field(); ?>
           <div class="form-group">
             <label for="current_password">Senha Atual:</label>
             <input type="password" class="form-control" id="current_password" name="current_password" required>
@@ -660,7 +681,7 @@ $bodyClassAttribute = empty($bodyClasses) ? '' : ' class="' . implode(' ', $body
                 </button>
             </div>
             <div class="modal-body">
-                <?php echo isset($_SESSION['error']) ? $_SESSION['error'] : ''; ?>
+                <?php echo isset($_SESSION['error']) ? e($_SESSION['error']) : ''; ?>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -669,6 +690,9 @@ $bodyClassAttribute = empty($bodyClasses) ? '' : ' class="' . implode(' ', $body
     </div>
 </div>
 
+<?php endif; // $is_logged_in: troca da própria senha ?>
+
+<?php if ($is_admin): ?>
 <!-- Modal Redefinir Senha de UsuÃ¡rio -->
 <div class="modal fade" id="resetUserPasswordModal" tabindex="-1" role="dialog" aria-labelledby="resetUserPasswordModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -681,11 +705,12 @@ $bodyClassAttribute = empty($bodyClasses) ? '' : ' class="' . implode(' ', $body
             </div>
             <div class="modal-body">
                 <form id="resetUserPasswordForm" action="views/process_reset_user_password.php" method="POST">
+                    <?php echo csrf_field(); ?>
                     <div class="form-group">
                         <label for="reset_username">Usuário:</label>
                         <select class="form-control" id="reset_username" name="username" required>
                             <?php foreach ($usuarios as $usuario): ?>
-                                <option value="<?php echo $usuario['id']; ?>"><?php echo $usuario['username']; ?></option>
+                                <option value="<?php echo (int)$usuario['id']; ?>"><?php echo e($usuario['username']); ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -704,6 +729,7 @@ $bodyClassAttribute = empty($bodyClasses) ? '' : ' class="' . implode(' ', $body
     </div>
 
 </div>
+<?php endif; // $is_admin: reset de senha de usuário ?>
 <!-- Modal de Sucesso para Redefinição de Senha do Usuário -->
 <div class="modal fade" id="resetPasswordSuccessModal" tabindex="-1" role="dialog" aria-labelledby="resetPasswordSuccessModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -1021,6 +1047,7 @@ function updateDutyOfficers(config) {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
         },
         credentials: 'same-origin',
         body: JSON.stringify(officerData)

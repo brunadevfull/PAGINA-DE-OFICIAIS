@@ -522,7 +522,8 @@ $dutyOfficersApiUrl = ($scriptDirectory === '' ? '' : $scriptDirectory) . '/prox
             fetch(dutyOfficersApiUrl, {
                 method: 'PUT',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'X-CSRF-Token': <?php echo json_encode(csrf_token()); ?>
                 },
                 credentials: 'same-origin',
                 body: JSON.stringify(officerData)
